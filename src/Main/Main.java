@@ -56,7 +56,7 @@ public class Main {
                         int id = 0;
                         String nombre = "";
                         String correo = "";
-                        int numero = 0;
+                        String numero = "";
                         String direccion = "";
 
                         System.out.println("CRUD PROVEEDOR");
@@ -90,7 +90,7 @@ public class Main {
                                 System.out.println("");
 
                                 System.out.println("Porfavor ingrese el numero del proveedor");
-                                numero = leer.nextInt();
+                                numero = leer.next();
                                 System.out.println("");
 
                                 System.out.println("Porfavor ingrese la direccion del proveedor");
@@ -136,7 +136,7 @@ public class Main {
                                 System.out.println("");
 
                                 System.out.println("Porfavor ingrese el numero del proveedor");
-                                numero = leer.nextInt();
+                                numero = leer.next();
                                 System.out.println("");
 
                                 System.out.println("Porfavor ingrese la direccion del proveedor");
