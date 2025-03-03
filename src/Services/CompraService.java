@@ -1,16 +1,17 @@
 package Services;
 
-import DB.DBCompra;
+import DB.DataBase;
 import Models.Compra;
 
 public class CompraService {
     
-    public DBCompra db;
+    public DataBase db;
     
     //constructor
     
     public CompraService() {
-        this.db = new DBCompra();
+        this.db = new DataBase();
+        this.db.InicializarListaCompras();
     }
     
     //insertar compra
@@ -67,6 +68,7 @@ public class CompraService {
                 System.out.println("Total: " + this.db.lstCompras.get(i).getTotal());
                 System.out.println("Cantidad: " + this.db.lstCompras.get(i).getCantidad());
                 System.out.println("Codigo Factura: " + this.db.lstCompras.get(i).getCodFactura());
+                System.out.println("ID producto: " + this.db.lstCompras.get(i).getProducto());
                 System.out.println("");
 
             }

@@ -1,28 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
-/**
- *
- * @author migue
- */
 public class Compra {
     
     private int id;
     private double total;
     private int cantidad;
     private int codFactura;
+    private int producto;
 
     public Compra() {
     }
 
-    public Compra(int id, double total, int cantidad, int codFactura) {
+    public Compra(int id, double total, int cantidad, int codFactura, int producto) {
         this.id = id;
         this.total = total;
         this.cantidad = cantidad;
         this.codFactura = codFactura;
+        this.producto = producto;
     }
 
     public int getId() {
@@ -56,5 +50,15 @@ public class Compra {
     public void setCodFactura(int codFactura) {
         this.codFactura = codFactura;
     }
+
+    public int getProducto() {
+        return producto;
+    }
+
+    public void setProducto(int producto) {
+        this.producto = producto;
+    }
+    
+    
     
 }

@@ -39,8 +39,8 @@ public class CategoriaController {
         }
     }
 
-    public void mostrarCategorias() {
-        categoriaService.mostrarCategorias();
+    public void imprimir() {
+        categoriaService.imprimir();
     }
 
 }

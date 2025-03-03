@@ -45,6 +45,7 @@ public class CompraController {
             System.out.println("Correo: " + editarCompra.getTotal());
             System.out.println("Numero: " + editarCompra.getCantidad());
             System.out.println("Direccion: " + editarCompra.getCodFactura());
+            System.out.println("Direccion: " + editarCompra.getProducto());
         } else {
             System.out.println("No se encontró un proveedor con este ID.");
         }

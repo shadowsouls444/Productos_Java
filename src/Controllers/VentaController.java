@@ -45,6 +45,7 @@ public class VentaController {
             System.out.println("Correo: " + editarVenta.getTotal());
             System.out.println("Numero: " + editarVenta.getCantidad());
             System.out.println("Direccion: " + editarVenta.getCodigoFactura());
+            System.out.println("ID producto: " + editarVenta.getProducto());
         } else {
             System.out.println("No se encontró una venta con este ID.");
         }

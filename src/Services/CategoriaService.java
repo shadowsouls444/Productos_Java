@@ -1,25 +1,26 @@
 package Services;
 
-import DB.CategoriaDB;
+import DB.DataBase;
 import Models.Categoria;
 
 import java.util.List;
 
 public class CategoriaService {
 
-    public CategoriaDB categoriaDB;
+    public DataBase db;
 
     public CategoriaService() {
-        this.categoriaDB = new CategoriaDB();
+        this.db = new DataBase();
+        this.db.InicializarCategorias();
     }
 
     public Boolean InsertarCategoria(Categoria nuevaCategoria) {
-        return this.categoriaDB.lstCategorias.add(nuevaCategoria);
+        return this.db.lstCategorias.add(nuevaCategoria);
     }
 
     public Boolean EditarCategoria(Categoria categoria) {
         boolean respuesta = false;
-        List<Categoria> lstCategorias = this.categoriaDB.lstCategorias;
+        List<Categoria> lstCategorias = this.db.lstCategorias;
 
         for (int i = 0; i < lstCategorias.size(); i++) {
             if (lstCategorias.get(i) != null && lstCategorias.get(i).getId() == categoria.getId()) {
@@ -33,7 +34,7 @@ public class CategoriaService {
 
     public Boolean BorrarCategoria(int id) {
         boolean respuesta = false;
-        List<Categoria> lstCategorias = this.categoriaDB.lstCategorias;
+        List<Categoria> lstCategorias = this.db.lstCategorias;
 
         for (int i = 0; i < lstCategorias.size(); i++) {
             if (lstCategorias.get(i) != null && lstCategorias.get(i).getId() == id) {
@@ -45,9 +46,9 @@ public class CategoriaService {
         return respuesta;
     }
 
-    public void mostrarCategorias() {
+    public void imprimir() {
         System.out.println("-------------------------------------------------");
-        List<Categoria> lstCategorias = this.categoriaDB.lstCategorias;
+        List<Categoria> lstCategorias = this.db.lstCategorias;
 
         for (int i = 0; i < lstCategorias.size(); i++) {
             if (lstCategorias.get(i) != null) {

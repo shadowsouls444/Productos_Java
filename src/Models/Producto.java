@@ -14,9 +14,9 @@ public class Producto {
     private int categoria;
     private String fechaVencimiento;
     private int cantidad;
-    private int precio;
+    private double precio;
     
-    public Producto(int id,String nombreProducto, int categoria,String fechaVencimiento, int cantidad, int precio){
+    public Producto(int id,String nombreProducto, int categoria,String fechaVencimiento, int cantidad, double precio){
         this.id = id;
         this.nombreProducto = nombreProducto;
         this.cantidad = cantidad;
@@ -66,11 +66,11 @@ public class Producto {
         this.cantidad = cantidad;
     }
     
-      public int getPrecio(){
+      public double getPrecio(){
         return this.precio;
     }
       
-    public void setPrecio(int precio){
+    public void setPrecio(double precio){
         this.precio = precio    ;
     }
 

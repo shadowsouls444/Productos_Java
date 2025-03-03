@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Services;
-import DB.DatabaseProducto;
+import DB.DataBase;
 import Models.Producto;
 
-
-/**
- *
- * @author Usuario
- */
 public class ProductoService {
     
-    public DatabaseProducto db;
+    public DataBase db;
     
     public ProductoService(){
-        this.db = new DatabaseProducto();
+        this.db = new DataBase();
+        this.db.InicializarListaProducto();
     }
     
      public boolean InsertarProducto(Producto nuevoProducto) {
