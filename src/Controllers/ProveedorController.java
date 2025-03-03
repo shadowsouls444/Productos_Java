@@ -18,7 +18,7 @@ public class ProveedorController {
         if (respuesta) {
             System.out.println("Registro guardado con exito");
         } else {
-            System.out.println("Estamos presentando problemas porfavor comuniquese con el administrador");
+            System.out.println("Estamos presentando problemas");
         }
 
     }

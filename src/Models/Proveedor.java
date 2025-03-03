@@ -6,14 +6,14 @@ public class Proveedor {
     private int id;
     private String nombre;
     private String correo;
-    private int numero;
+    private String numero;
     private String direccion;
 
     public Proveedor() {
     }
     
     
-    public Proveedor(int id, String nombre, String correo, int numero, String direccion) {
+    public Proveedor(int id, String nombre, String correo, String numero, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -45,11 +45,11 @@ public class Proveedor {
         this.correo = correo;
     }
     
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

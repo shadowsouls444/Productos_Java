@@ -9,6 +9,7 @@ public class ProveedorService {
 
     public ProveedorService() {
         this.db = new DataBase();
+        this.db.InicializarListaProveedores();
     }
 
     public boolean InsertarProveedor(Proveedor nuevoProveedor) {
