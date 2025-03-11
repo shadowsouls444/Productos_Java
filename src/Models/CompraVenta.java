@@ -1,17 +1,17 @@
 package Models;
 
-public class Compra {
+public class CompraVenta {
     
     private int id;
     private double total;
     private int cantidad;
-    private int codFactura;
-    private int producto;
+    private String codFactura;
+    private Producto producto; // Relación con Producto
 
-    public Compra() {
+    public CompraVenta() {
     }
 
-    public Compra(int id, double total, int cantidad, int codFactura, int producto) {
+    public CompraVenta(int id, double total, int cantidad, String codFactura, Producto producto) {
         this.id = id;
         this.total = total;
         this.cantidad = cantidad;
@@ -43,22 +43,20 @@ public class Compra {
         this.cantidad = cantidad;
     }
 
-    public int getCodFactura() {
+    public String getCodFactura() {
         return codFactura;
     }
 
-    public void setCodFactura(int codFactura) {
+    public void setCodFactura(String codFactura) {
         this.codFactura = codFactura;
     }
 
-    public int getProducto() {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setProducto(int producto) {
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
-    
-    
     
 }

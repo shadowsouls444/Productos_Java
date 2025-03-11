@@ -1,14 +1,19 @@
 package Models;
 
+import java.util.Date;
+
 public class Producto {
     private int id;
     private String nombreProducto;
-    private Categoria categoria;
-    private String fechaVencimiento;
+    private Categoria categoria; // Relación con categoria
+    private Date fechaVencimiento;
     private int cantidad;
     private double precio;
 
-    public Producto(int id, String nombreProducto, Categoria categoria, String fechaVencimiento, int cantidad, double precio) {
+    public Producto() {
+    }
+
+    public Producto(int id, String nombreProducto, Categoria categoria, Date fechaVencimiento, int cantidad, double precio) {
         this.id = id;
         this.nombreProducto = nombreProducto;
         this.categoria = categoria;
@@ -41,11 +46,11 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public String getFechaVencimiento() {
+    public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(String fechaVencimiento) {
+    public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 
