@@ -22,11 +22,28 @@ public class Main {
         Categoria categoria;
 
         //INSERTAR
-        categoria = new Categoria(1, "Tecnologia");
+        /*
+        categoria = new Categoria(3, "Aseo personal 500 ML");
         categoriaService.AgregarCategoria(categoria);
+        */
+        
+        //ELIMINAR
+        /*
+        categoriaService.EliminarCategoria(1);
+        */
+
+        //EDITAR
+        /*
+        categoria = new Categoria(3, "Moachos");        
+        categoriaService.EditarCategoria(categoria);
+        */
+        
+        //LEER      
+        categoriaService.MostrarCategoria();
 
         //----------------------- PRODUCTO -----------------------------
         
+        /*
         //INSTANCIA 
         ProductoService productoService = new ProductoService();
 
@@ -36,9 +53,11 @@ public class Main {
         //INSERTAR
         producto = new Producto(1, "PS5", categoria, new SimpleDateFormat("yyyy-MM-dd").parse("2025-01-01"), 5, 2.500);
         productoService.AgregarProducto(producto);
+        */
 
         //----------------------- COMPRAVENTA -----------------------------
         
+        /*
         //INSTANCIA
         CompraVentaService compraVentaService = new CompraVentaService();
 
@@ -56,10 +75,11 @@ public class Main {
         /*
         compraVenta = new CompraVenta(1, 550.000, 20, "100-IN", producto);        
         compraVentaService.EditarCompraVenta(compraVenta);
-         */
-        
+             
         //LEER      
         compraVentaService.MostrarCompraVenta();
+        */
+        
     }
 
 }
