@@ -1,11 +1,13 @@
 package Main;
 
+import Controllers.CategoriaController;
+import Controllers.CompraVentaController;
+import Controllers.ProductoController;
+import Controllers.ProveedorController;
 import Models.Categoria;
 import Models.CompraVenta;
 import Models.Producto;
-import Services.CategoriaService;
-import Services.CompraVentaService;
-import Services.ProductoService;
+import Models.Proveedor;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -15,69 +17,98 @@ public class Main {
 
         //----------------------- CATEGORIA -----------------------------
         
+        /*
         //INSTANCIA
-        CategoriaService categoriaService = new CategoriaService();
+        CategoriaController categoriaController = new CategoriaController();
 
         //Instancia del objeto (para evitar error de que ya esta definido)
         Categoria categoria;
 
         //INSERTAR
-        /*
-        categoria = new Categoria(3, "Aseo personal 500 ML");
-        categoriaService.AgregarCategoria(categoria);
-        */
+        categoria = new Categoria(7, "Tecnologia");
+        categoriaController.InsertarCategoria(categoria);
         
         //ELIMINAR
-        /*
-        categoriaService.EliminarCategoria(1);
-        */
+        categoriaController.BorrarCategoria(1);
 
         //EDITAR
-        /*
-        categoria = new Categoria(3, "Moachos");        
-        categoriaService.EditarCategoria(categoria);
-        */
+        categoria = new Categoria(7, "aseo");
+        categoriaController.EditarCategoria(categoria);
         
         //LEER      
-        categoriaService.MostrarCategoria();
+        categoriaController.imprimir();
+        */
 
         //----------------------- PRODUCTO -----------------------------
         
         /*
         //INSTANCIA 
-        ProductoService productoService = new ProductoService();
+        ProductoController productoController = new ProductoController();
 
         //Instancia del objeto (para evitar error de que ya esta definido)
         Producto producto;
 
         //INSERTAR
-        producto = new Producto(1, "PS5", categoria, new SimpleDateFormat("yyyy-MM-dd").parse("2025-01-01"), 5, 2.500);
-        productoService.AgregarProducto(producto);
+        producto = new Producto(2, "PS5", categoria, new SimpleDateFormat("yyyy-MM-dd").parse("2025-01-01"), 5, 2.500);
+        productoController.InsertarProducto(producto);
+        
+        //ELIMINAR
+        productoController.BorrarProducto(1);
+
+        //EDITAR
+        producto = new Producto(5, "ELPEPE", categoria, new SimpleDateFormat("yyyy-MM-dd").parse("2025-11-11"), 5, 2.500);
+        productoController.EditarProducto(producto);
+        
+        //LEER      
+        productoController.imprimir();
         */
 
         //----------------------- COMPRAVENTA -----------------------------
         
         /*
         //INSTANCIA
-        CompraVentaService compraVentaService = new CompraVentaService();
+        CompraVentaController compraVentaController = new CompraVentaController();
 
         //Instancia del objeto (para evitar error de que ya esta definido)
         CompraVenta compraVenta;
 
         //INSERTAR
         compraVenta = new CompraVenta(3, 750.000, 5, "250-IN", producto);
-        compraVentaService.AgregarCompraVenta(compraVenta);
+        compraVentaController.InsertarCompraVenta(compraVenta);
 
         //ELIMINAR
-        compraVentaService.EliminarCompraVenta(1);
+        compraVentaController.BorrarCompra(1);
 
         //EDITAR
-        /*
         compraVenta = new CompraVenta(1, 550.000, 20, "100-IN", producto);        
-        compraVentaService.EditarCompraVenta(compraVenta);
-             
+        compraVentaController.EditarCompra(compraVenta);
+        
         //LEER      
-        compraVentaService.MostrarCompraVenta();
+        compraVentaController.imprimir();
+        */
+        
+        //----------------------- PROVEEDOR -----------------------------
+        
+        /*
+        //INSTANCIA
+        ProveedorController proveedorController = new ProveedorController();
+        
+        //Instancia del objeto (para evitar error de que ya esta definido)
+        Proveedor proveedor;
+        
+        //INSERTAR
+        proveedor = new Proveedor(1,"Juan","juan@gmail.com","3102409080","calle 10");
+        proveedorController.InsertarProveedor(proveedor);
+        
+        //ELIMINAR
+        proveedorController.BorrarProveedor(1);
+        
+        //EDITAR
+        proveedor = new Proveedor(1,"Juan","juan@gmail.com","3102409080","calle 40");
+        proveedorController.EditarProveedor(proveedor);
+        
+        //LEER      
+        proveedorController.ImprimirProveedor();
         */
         
     }

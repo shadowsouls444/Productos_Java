@@ -37,14 +37,15 @@ public class ProductoService {
     // Editar producto
     public void EditarProducto(Producto producto) {
         Connection conexion = DataBase.Conectar();
-        String sql = "UPDATE productos SET nombre = ?, categoria = ?, fechaVencimiento = ?, cantidad = ?, precio = ? WHERE id = ?";
+        String sql = "UPDATE productos SET nombreProducto = ?, categoria = ?, fechaVencimiento = ?, cantidad = ?, precio = ? WHERE id = ?";
 
         try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
             preparedStatement.setString(1, producto.getNombreProducto());
             preparedStatement.setInt(2, producto.getCategoria().getId());
-            preparedStatement.setDate(3, (Date) producto.getFechaVencimiento());
+            preparedStatement.setDate(3, new java.sql.Date(producto.getFechaVencimiento().getTime()));
             preparedStatement.setInt(4, producto.getCantidad());
             preparedStatement.setDouble(5, producto.getPrecio());
+            preparedStatement.setInt(6, producto.getId());
             preparedStatement.executeUpdate();
             System.out.println("El producto se ha modificado correctamente");
         } catch (SQLException e) {
