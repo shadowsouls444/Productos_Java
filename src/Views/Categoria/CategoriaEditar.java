@@ -8,7 +8,7 @@ import Views.CompraVenta.*;
 
 /**
  *
- * @author ANGEL
+ * @author MIGUEL
  */
 public class CategoriaEditar extends javax.swing.JFrame {
 
