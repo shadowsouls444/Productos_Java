@@ -8,7 +8,7 @@ import Views.CompraVenta.*;
 
 /**
  *
- * @author ANGEL
+ * @author MIGUEL
  */
 public class CategoriaAgregar extends javax.swing.JFrame {
 
