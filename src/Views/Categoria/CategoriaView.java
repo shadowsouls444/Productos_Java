@@ -6,7 +6,7 @@ package Views.Categoria;
 
 /**
  *
- * @author ANGEL
+ * @author MIGUEL
  */
 public class CategoriaView extends javax.swing.JFrame {
 
