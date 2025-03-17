@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="368" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="684" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="241" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Agregar +"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="jTable1">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="6" rowCount="10">
+                    <Column editable="true" title="Id" type="java.lang.Integer">
+                      <Data value="1"/>
+                      <Data value="2"/>
+                      <Data value="3"/>
+                      <Data value="4"/>
+                      <Data value="5"/>
+                      <Data value="6"/>
+                      <Data value="7"/>
+                      <Data value="8"/>
+                      <Data value="9"/>
+                      <Data value="10"/>
+                    </Column>
+                    <Column editable="true" title="Nombre " type="java.lang.String">
+                      <Data value="Jos&#xe9; Perez"/>
+                      <Data value="Manuela Beltran"/>
+                      <Data value="Jorge Flores"/>
+                      <Data value="Ted James"/>
+                      <Data value="Jennie Nichols"/>
+                      <Data value="Clayton Olson"/>
+                      <Data value="Hunter Hughes"/>
+                      <Data value="Pimen Pisarevskiy"/>
+                      <Data value="Meral Avan"/>
+                      <Data value="Jackson Roberts"/>
+                    </Column>
+                    <Column editable="true" title="Correo " type="java.lang.String">
+                      <Data value="jose@gmail.com"/>
+                      <Data value="manuela@gmail.com"/>
+                      <Data value="jorge@gmail.com"/>
+                      <Data value="ted.james@example.com"/>
+                      <Data value="jennie.nichols@example.com"/>
+                      <Data value="clayton.olson@example.com"/>
+                      <Data value="hunter.hughes@example.com"/>
+                      <Data value="pimen.pisarevskiy@example.com"/>
+                      <Data value="meral.avan@example.com"/>
+                      <Data value="jackson.roberts@example.com"/>
+                    </Column>
+                    <Column editable="true" title="Numero" type="java.lang.String">
+                      <Data value="3102345678"/>
+                      <Data value="312321321"/>
+                      <Data value="3103214567"/>
+                      <Data value="0497-166-602"/>
+                      <Data value="(489) 330-2385"/>
+                      <Data value="0422-838-813"/>
+                      <Data value="(104)-781-7382"/>
+                      <Data value="(067) A21-8306"/>
+                      <Data value="(480)-729-1018"/>
+                      <Data value="(851)-085-4809"/>
+                    </Column>
+                    <Column editable="true" title="Direcci&#xf3;n" type="java.lang.String">
+                      <Data value="1234 Elm Street, Springfield, IL 62704"/>
+                      <Data value="5678 Oak Avenue, Los Angeles, CA 90001"/>
+                      <Data value="9101 Pine Road, Miami, FL 33101"/>
+                      <Data value="2345 Maple Lane, Denver, CO 80202"/>
+                      <Data value="6789 Cedar Court, Seattle, WA 98101"/>
+                      <Data value="1011 Birch Street, Houston, TX 77001"/>
+                      <Data value="2122 Willow Drive, Chicago, IL 60601"/>
+                      <Data value="3233 Spruce Avenue, New York, NY 10001"/>
+                      <Data value="4344 Redwood Road, San Francisco, CA 94101"/>
+                      <Data value="455 Cypress Lane, Atlanta, GA 30301"/>
+                    </Column>
+                    <Column editable="true" title="Acciones" type="java.lang.Object">
+                      <Data value="EDITAR / ELIMINAR"/>
+                      <Data value="EDITAR / ELIMINAR"/>
+                      <Data value="EDITAR / ELIMINAR"/>
+                      <Data value="EDITAR/ELIMINAR"/>
+                      <Data value="EDITAR/ELIMINAR"/>
+                      <Data value="EDITAR/ELIMINAR"/>
+                      <Data value="EDITAR/ELIMINAR"/>
+                      <Data value="EDITAR/ELIMINAR"/>
+                      <Data value="EDITAR/ELIMINAR"/>
+                      <Data value="EDITAR/ELIMINAR"/>
+                    </Column>
+                  </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="CompraVenta_jTable1"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="48" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="PROVEEDORES"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
