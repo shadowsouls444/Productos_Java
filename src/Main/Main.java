@@ -8,14 +8,18 @@ import Models.Categoria;
 import Models.CompraVenta;
 import Models.Producto;
 import Models.Proveedor;
+import Views.Categoria.CategoriaView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Main {
 
     public static void main(String[] args) throws ParseException {
-
+        
         //----------------------- CATEGORIA -----------------------------
+        
+        CategoriaView categoriaView = new CategoriaView();
+        categoriaView.setVisible(true);
         
         /*
         //INSTANCIA

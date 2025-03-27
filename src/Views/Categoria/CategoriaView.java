@@ -4,17 +4,66 @@
  */
 package Views.Categoria;
 
+import Controllers.CategoriaController;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+
 /**
  *
  * @author MIGUEL
  */
 public class CategoriaView extends javax.swing.JFrame {
 
+    //INSTANCIA
+    CategoriaController categoriaController = new CategoriaController();
+
     /**
      * Creates new form CompraVenta
      */
     public CategoriaView() {
         initComponents();
+        InicializarTabla();
+    }
+
+    public void InicializarTabla() {
+
+        Object[] titulos = new Object[2];
+        titulos[0] = "ID";
+        titulos[1] = "Nombre";
+
+        DefaultTableModel md = new DefaultTableModel();
+        md.setColumnIdentifiers(titulos);
+
+        //Recorrer las columnas en ResultSet
+        ResultSet rs = categoriaController.ConsultarCategoria("SELECT * FROM Categorias");
+
+        try {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+
+                // Crear una fila con los valores obtenidos
+                Object[] fila = new Object[2];
+                fila[0] = id;
+                fila[1] = nombre;
+
+                // Agregar la fila al modelo de la tabla
+                md.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: Al consultar Categoria " + e.getMessage());
+
+        }
+
+        tabla.setModel(md);
+
     }
 
     /**
@@ -26,37 +75,12 @@ public class CategoriaView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Alimentación y nutrición. ", "EDITAR / ELIMINAR"},
-                {"Bebidas alcohólicas. ", "EDITAR / ELIMINAR"},
-                {"Bebidas sin alcohol. ", "EDITAR / ELIMINAR"},
-                {"Cosmética y cuidado personal. ", "EDITAR / ELIMINAR"},
-                {"Equipamiento del hogar. ", "EDITAR / ELIMINAR"},
-                {"Juguetes", "EDITAR / ELIMINAR"},
-                {"Mascotas", "EDITAR / ELIMINAR"},
-                {"Productos de limpieza. ", "EDITAR / ELIMINAR"}
-            },
-            new String [] {
-                "Nombre categoria", "Opciones"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Categoria vista");
@@ -64,31 +88,45 @@ public class CategoriaView extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton1.setText("Agregar +");
 
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tabla);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(226, 226, 226))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jLabel1)))
+                .addGap(0, 284, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,6 +172,6 @@ public class CategoriaView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

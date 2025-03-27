@@ -24,121 +24,44 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="684" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="663" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="80" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="368" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="284" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="241" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="197" max="-2" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
-          <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="10">
-                <Column editable="true" title="Total" type="java.lang.Float">
-                  <Data value="50000.0"/>
-                  <Data value="15000.0"/>
-                  <Data value="200000.0"/>
-                  <Data value="300000.0"/>
-                  <Data value="30000.0"/>
-                  <Data value="60000.0"/>
-                  <Data value="2000.0"/>
-                  <Data value="5000.0"/>
-                  <Data value="300000.0"/>
-                  <Data value="28000.0"/>
-                </Column>
-                <Column editable="true" title="Cantidad " type="java.lang.Integer">
-                  <Data value="8"/>
-                  <Data value="2"/>
-                  <Data value="20"/>
-                  <Data value="2"/>
-                  <Data value="3"/>
-                  <Data value="10"/>
-                  <Data value="2"/>
-                  <Data value="1"/>
-                  <Data value="3"/>
-                  <Data value="9"/>
-                </Column>
-                <Column editable="true" title="Producto " type="java.lang.String">
-                  <Data value="Papitas Lay"/>
-                  <Data value="Cereal Zucaritas"/>
-                  <Data value="Oya Zenu"/>
-                  <Data value="PlayStation 2"/>
-                  <Data value="DeTodito 160 gr"/>
-                  <Data value="Jugo hit 1 L"/>
-                  <Data value="bombombum"/>
-                  <Data value="Aceite premium"/>
-                  <Data value="Oya express"/>
-                  <Data value="Guaro antioque&#xf1;o"/>
-                </Column>
-                <Column editable="true" title="Codigo factura" type="java.lang.String">
-                  <Data value="EM-001"/>
-                  <Data value="EM-002"/>
-                  <Data value="EM-003"/>
-                  <Data value="EM-004"/>
-                  <Data value="EM-005"/>
-                  <Data value="EM-006"/>
-                  <Data value="EM-007"/>
-                  <Data value="EM-008"/>
-                  <Data value="EM-009"/>
-                  <Data value="EM-010"/>
-                </Column>
-                <Column editable="true" title="OPCIONES" type="java.lang.String">
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                  <Data value="EDITAR / ELIMINAR"/>
-                </Column>
-              </Table>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="CompraVenta_jTable1"/>
-          </AuxValues>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="48" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="COMPRA VENTA"/>
+        <Property name="text" type="java.lang.String" value="Categoria vista"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
@@ -149,5 +72,21 @@
         <Property name="text" type="java.lang.String" value="Agregar +"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="tabla">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="0" rowCount="4"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

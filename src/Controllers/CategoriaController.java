@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Categoria;
 import Services.CategoriaService;
+import java.sql.ResultSet;
 
 public class CategoriaController {
     
@@ -29,9 +30,9 @@ public class CategoriaController {
         
     }
 
-    public void imprimir() {
+    public ResultSet ConsultarCategoria(String ConsultaSQL) {
         
-        categoriaService.MostrarCategoria();
+        return categoriaService.ConsultarCategoria(ConsultaSQL);
         
     }
 
