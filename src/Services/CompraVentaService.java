@@ -20,7 +20,7 @@ public class CompraVentaService {
             stmt.setDouble(2, compraVenta.getTotal());
             stmt.setInt(3, compraVenta.getCantidad());
             stmt.setString(4, compraVenta.getCodFactura());
-            stmt.setInt(5, compraVenta.getProducto().getId()); // Referencia al producto existente por id
+            stmt.setInt(5, compraVenta.getId_producto()); // Referencia al producto existente por id
             stmt.executeUpdate();
             System.out.println("La Compra-Venta se registro correctamente");
             
@@ -67,7 +67,7 @@ public class CompraVentaService {
             stmt.setDouble(1, compraVenta.getTotal());
             stmt.setInt(2, compraVenta.getCantidad());
             stmt.setString(3, compraVenta.getCodFactura());
-            stmt.setInt(4, compraVenta.getProducto().getId()); // Referencia al producto existente por id
+            stmt.setInt(4, compraVenta.getId_producto()); // Referencia al producto existente por id
             stmt.setInt(5, compraVenta.getId()); // Referencia al producto existente por id
             stmt.executeUpdate();
             System.out.println("La Compra-Venta se edito correctamente");
@@ -83,46 +83,28 @@ public class CompraVentaService {
         }
     }
     
-    public void MostrarCompraVenta() {
+    public ResultSet ConsultarCompraVenta(String ConsultaSQL) {
         
+        // Establecer la conexión
         Connection conexion = DataBase.Conectar();
-        String sql = "SELECT * FROM CompraVentas";
         
-         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-             
-             //Usamos ResultSet para obtener los datos de columna correspondientes a un fila y se lo asignamos a una variable rs
-             //Ejecutamos el query con executeQuery
-             ResultSet rs = stmt.executeQuery();
-             
-             //Usamos rs.next para mostrar todas las filas hasta que sea false
-             while(rs.next()){
-                 
-                 //Almacenamos los datos en una variable de acuerdo a la posicion de la fila
-                 int id = rs.getInt(1);
-                 double total = rs.getDouble(2);
-                 int cantidad = rs.getInt(3);
-                 String codFactura = rs.getString(4);
-                 int producto = rs.getInt(5);
-                 
-                 System.out.println("Datos de la compra venta con ID: " + id);
-                 System.out.println("--------------");
-                 System.out.println("total: " + total);
-                 System.out.println("cantidad: " + cantidad);
-                 System.out.println("Codigo de factura: " + codFactura);
-                 System.out.println("ID producto: " + producto);
-                 System.out.println("");
-                 
-             }
-             
-        } catch(SQLException e) {
-            
-            System.out.println("ERROR: Al consultar CompraVenta " + e.getMessage());
-            
-        } finally {
-            
-            DataBase.DesconectarDB(conexion);
-            
+        //Inicializar el resultado como null
+        ResultSet rs = null;
+
+        try {
+            // Crear el PreparedStatement
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+
+            // Ejecutar el query y obtener el ResultSet
+            rs = stmt.executeQuery();
+
+            // NO cerrar la conexión ni el Statement aquí, ya que los necesitamos afuera
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al consultar CompraVentas " + e.getMessage());
         }
+
+        // Devolver el ResultSet para que se procese fuera del método
+        return rs;  
     }
     
 }

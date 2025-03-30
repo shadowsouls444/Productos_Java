@@ -82,38 +82,27 @@ public class ProveedorService {
         }
     }
     
-    public void MostrarProveedor(){
+    public ResultSet ConsultarProveedor(String ConsultaSQL) {
         
+        // Establecer la conexión
         Connection conexion = DataBase.Conectar();
-        String sql ="SELECT * FROM proveedor";
         
-        try(PreparedStatement stmt = conexion.prepareStatement(sql)){
-            
-            ResultSet rs = stmt.executeQuery();
-            
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String nombre = rs.getString(2);
-                String correo = rs.getString(3);
-                String numeroCelular = rs.getString(4);
-                String direccion = rs.getString(5);
-                
-                System.err.println("Datos del proveedor con el ID: " + id);
-                System.out.println("--------------");
-                System.out.println("Nombre: " + nombre);
-                System.out.println("Correo: " + correo);
-                System.out.println("Numero de Celular: " + numeroCelular);
-                System.out.println("Direccion: " + direccion);
-            }
-            
-        } catch(SQLException e) {
-            
+        //Inicializar el resultado como null
+        ResultSet rs = null;
+
+        try {
+            // Crear el PreparedStatement
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+
+            // Ejecutar el query y obtener el ResultSet
+            rs = stmt.executeQuery();
+
+            // NO cerrar la conexión ni el Statement aquí, ya que los necesitamos afuera
+        } catch (SQLException e) {
             System.out.println("ERROR: Al consultar Proveedor " + e.getMessage());
-            
-        } finally {
-            
-            DataBase.DesconectarDB(conexion);
-            
         }
+
+        // Devolver el ResultSet para que se procese fuera del método
+        return rs;  
     }
 }

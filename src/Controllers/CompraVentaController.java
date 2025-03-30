@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.CompraVenta;
 import Services.CompraVentaService;
+import java.sql.ResultSet;
 
 public class CompraVentaController {
     
@@ -29,9 +30,9 @@ public class CompraVentaController {
         
     }
 
-    public void imprimir() {
+    public ResultSet ConsultarCompraVenta(String ConsultaSQL) {
         
-        compraVentaService.MostrarCompraVenta();
+        return compraVentaService.ConsultarCompraVenta(ConsultaSQL);
         
     }
     

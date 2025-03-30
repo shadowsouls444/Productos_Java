@@ -8,7 +8,8 @@ import Models.Categoria;
 import Models.CompraVenta;
 import Models.Producto;
 import Models.Proveedor;
-import Views.Categoria.CategoriaView;
+import Views.Categoria.CategoriaListar;
+import Views.MenuPrincipal.MenuPrincipal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -18,8 +19,8 @@ public class Main {
         
         //----------------------- CATEGORIA -----------------------------
         
-        CategoriaView categoriaView = new CategoriaView();
-        categoriaView.setVisible(true);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
         
         /*
         //INSTANCIA
@@ -45,7 +46,6 @@ public class Main {
 
         //----------------------- PRODUCTO -----------------------------
         
-        /*
         //INSTANCIA 
         ProductoController productoController = new ProductoController();
 
@@ -53,9 +53,10 @@ public class Main {
         Producto producto;
 
         //INSERTAR
-        producto = new Producto(2, "PS5", categoria, new SimpleDateFormat("yyyy-MM-dd").parse("2025-01-01"), 5, 2.500);
+        producto = new Producto(2, "PS5", 2, new SimpleDateFormat("yyyy-MM-dd").parse("2025-01-01"), 5, 2.500);
         productoController.InsertarProducto(producto);
         
+        /*
         //ELIMINAR
         productoController.BorrarProducto(1);
 

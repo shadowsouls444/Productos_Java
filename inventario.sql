@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2025 a las 07:29:52
+-- Tiempo de generación: 30-03-2025 a las 19:55:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,6 +32,13 @@ CREATE TABLE `categorias` (
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`) VALUES
+(1, 'Clorox');
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +52,13 @@ CREATE TABLE `compraventas` (
   `codFactura` varchar(255) NOT NULL,
   `producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `compraventas`
+--
+
+INSERT INTO `compraventas` (`id`, `total`, `cantidad`, `codFactura`, `producto`) VALUES
+(1, 500, 5, 'RMF-001', 1);
 
 -- --------------------------------------------------------
 
@@ -61,6 +75,13 @@ CREATE TABLE `productos` (
   `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombreProducto`, `categoria`, `fechaVencimiento`, `cantidad`, `precio`) VALUES
+(1, 'Papitas Lay 150 gr', 1, '2025-01-01', 5, 2.5);
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +95,13 @@ CREATE TABLE `proveedor` (
   `numeroCelular` varchar(15) NOT NULL,
   `direccion` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id`, `nombre`, `correo`, `numeroCelular`, `direccion`) VALUES
+(1, 'Ramo', 'ramo@gmail.com', '3024390239', 'calle 45#12-31');
 
 --
 -- Índices para tablas volcadas

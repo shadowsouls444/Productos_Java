@@ -16,7 +16,7 @@ public class ProductoService {
 
             stmt.setInt(1, producto.getId());
             stmt.setString(2, producto.getNombreProducto());
-            stmt.setInt(3, producto.getCategoria().getId());
+            stmt.setInt(3, producto.getId_categoria());
             stmt.setDate(4, new java.sql.Date(producto.getFechaVencimiento().getTime()));
             stmt.setInt(5, producto.getCantidad());
             stmt.setDouble(6, producto.getPrecio());
@@ -41,7 +41,7 @@ public class ProductoService {
 
         try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
             preparedStatement.setString(1, producto.getNombreProducto());
-            preparedStatement.setInt(2, producto.getCategoria().getId());
+            preparedStatement.setInt(2, producto.getId_categoria());
             preparedStatement.setDate(3, new java.sql.Date(producto.getFechaVencimiento().getTime()));
             preparedStatement.setInt(4, producto.getCantidad());
             preparedStatement.setDouble(5, producto.getPrecio());
@@ -56,36 +56,28 @@ public class ProductoService {
     }
 
     // Mostrar productos registrados
-    public void MostrarProductos() {
+    public ResultSet ConsultarProducto(String ConsultaSQL) {
+        
+        // Establecer la conexión
         Connection conexion = DataBase.Conectar();
-        String sql = "SELECT * FROM productos";
+        
+        //Inicializar el resultado como null
+        ResultSet rs = null;
 
-        try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try {
+            // Crear el PreparedStatement
+            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String nombre = resultSet.getString(2);
-                int idCategoria = resultSet.getInt(3);
-                String fechaVencimiento = resultSet.getString(4);
-                int cantidad = resultSet.getInt(5);
-                double precio = resultSet.getDouble(6);
+            // Ejecutar el query y obtener el ResultSet
+            rs = stmt.executeQuery();
 
-                System.out.println("PRODUCTOS REGISTRADOS EN LA BASE DE DATOS");
-                System.out.println("------------------------");
-                System.out.println("ID: " + id);
-                System.out.println("NOMBRE: " + nombre);
-                System.out.println("ID_CATEGORIA: " + idCategoria);
-                System.out.println("FECHA_VENCIMENTO: " + fechaVencimiento);
-                System.out.println("CANTIDAD: " + cantidad);
-                System.out.println("PRECIO: " + precio);
-            }
-
+            // NO cerrar la conexión ni el Statement aquí, ya que los necesitamos afuera
         } catch (SQLException e) {
-            System.out.println("ERROR: Al mostrar productos " + e.getMessage());
-        } finally {
-            DataBase.DesconectarDB(conexion);
+            System.out.println("ERROR: Al consultar Productos " + e.getMessage());
         }
+
+        // Devolver el ResultSet para que se procese fuera del método
+        return rs;  
     }
 
     //Eliminar producto

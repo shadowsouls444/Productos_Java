@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Producto;
 import Services.ProductoService;
+import java.sql.ResultSet;
 
 public class ProductoController {
     
@@ -31,9 +32,9 @@ public class ProductoController {
         
     }
 
-    public void imprimir() {
+    public ResultSet ConsultarProducto(String ConsultaSQL) {
         
-        productoService.MostrarProductos();
+        return productoService.ConsultarProducto(ConsultaSQL);
         
     }
    

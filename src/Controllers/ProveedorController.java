@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Proveedor;
 import Services.ProveedorService;
+import java.sql.ResultSet;
 
 public class ProveedorController {
         
@@ -29,9 +30,9 @@ public class ProveedorController {
     
     }
     
-    public void ImprimirProveedor(){
+    public ResultSet ConsultarProveedor(String ConsultaSQL) {
         
-        proveedorService.MostrarProveedor();
-    
+        return proveedorService.ConsultarProveedor(ConsultaSQL);
+        
     }
 }
