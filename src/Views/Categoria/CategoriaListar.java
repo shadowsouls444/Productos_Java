@@ -5,12 +5,10 @@
 package Views.Categoria;
 
 import Controllers.CategoriaController;
+import Views.MenuPrincipal.MenuPrincipal;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JTable;
 
 /**
  *
@@ -76,17 +74,24 @@ public class CategoriaListar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        agregarCategoria = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        volver = new javax.swing.JButton();
+        editarCategoria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Categoria vista");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("Agregar +");
+        agregarCategoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        agregarCategoria.setText("Agregar +");
+        agregarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarCategoriaActionPerformed(evt);
+            }
+        });
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,6 +106,21 @@ public class CategoriaListar extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla);
 
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
+        editarCategoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        editarCategoria.setText("Editar");
+        editarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarCategoriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,9 +129,14 @@ public class CategoriaListar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(volver)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(agregarCategoria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(editarCategoria)
+                                .addGap(12, 12, 12))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(jLabel1)))
@@ -123,14 +148,42 @@ public class CategoriaListar extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregarCategoria)
+                    .addComponent(editarCategoria))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(volver)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void agregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriaAgregar categoriaAgregar = new CategoriaAgregar();
+        categoriaAgregar.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_agregarCategoriaActionPerformed
+
+    private void editarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriaEditar categoriaEditar = new CategoriaEditar();
+        categoriaEditar.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_editarCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,9 +224,11 @@ public class CategoriaListar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton agregarCategoria;
+    private javax.swing.JButton editarCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

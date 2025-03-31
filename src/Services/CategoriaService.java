@@ -6,6 +6,7 @@ import Models.Categoria;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class CategoriaService {
 
@@ -28,16 +29,18 @@ public class CategoriaService {
     public void EliminarCategoria(int id) {
 
         Connection conexion = DataBase.Conectar();
-        String sql = "DELETE FROM Categorias WHERE id = ?";
+        String sql = "DELETE FROM Categorias WHERE id = '" + id + "'";
 
         try ( PreparedStatement stmt = conexion.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-            System.out.println("La Categoria se elimino correctamente");
+            int filasAfectadas = stmt.executeUpdate();
+            if(filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(null, "Datos eliminados");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron datos a eliminar");
+            }
 
         } catch (SQLException e) {
-
+            JOptionPane.showMessageDialog(null, "Error al eliminar");
             System.out.println("ERROR: Al eliminar Categoria " + e.getMessage());
 
         } finally {
@@ -47,26 +50,23 @@ public class CategoriaService {
         }
     }
 
-    public void EditarCategoria(Categoria categoria) {
+    public void EditarCategoria(Categoria categoria, int id) {
 
         Connection conexion = DataBase.Conectar();
-        String sql = "UPDATE Categorias SET nombre = ? WHERE id = ?";
+        String sql = "UPDATE Categorias SET nombre = ? WHERE id = '" + id + "'";
 
         try ( PreparedStatement stmt = conexion.prepareStatement(sql)) {
 
             stmt.setString(1, categoria.getNombre());
-            stmt.setInt(2, categoria.getId());
             stmt.executeUpdate();
             System.out.println("La categoria se edito correctamente");
 
         } catch (SQLException e) {
-
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar el registro de la persona." +e, "ERROR al ACTUALIZAR", JOptionPane.ERROR_MESSAGE);
             System.out.println("ERROR: Al editar categoria " + e.getMessage());
 
         } finally {
-
             DataBase.DesconectarDB(conexion);
-
         }
     }
 

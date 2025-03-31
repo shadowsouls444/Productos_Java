@@ -4,7 +4,9 @@
  */
 package Views.Categoria;
 
-import Views.CompraVenta.*;
+import Controllers.CategoriaController;
+import Models.Categoria;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,18 +31,59 @@ public class CategoriaEditar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNombreCategoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        editarCategoria = new javax.swing.JButton();
+        buscarCategoria = new javax.swing.JButton();
+        limpiarFormulario = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtBuscarCategoria = new javax.swing.JTextField();
+        btnVolver = new javax.swing.JButton();
+        eliminarCategoria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Agregar Compra Venta");
+        jLabel1.setText("Editar Categoria");
 
-        jLabel2.setText("categoria");
+        jLabel2.setText("Nombre Categoria");
 
-        jButton1.setText("EDITAR");
+        editarCategoria.setText("EDITAR");
+        editarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarCategoriaActionPerformed(evt);
+            }
+        });
+
+        buscarCategoria.setText("BUSCAR");
+        buscarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarCategoriaActionPerformed(evt);
+            }
+        });
+
+        limpiarFormulario.setText("LIMPIAR");
+        limpiarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarFormularioActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Buscar categoria");
+
+        btnVolver.setText("VOLVER");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        eliminarCategoria.setText("ELIMINAR");
+        eliminarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarCategoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,12 +97,25 @@ public class CategoriaEditar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(33, 33, 33)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(195, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(editarCategoria)
+                                .addGap(12, 12, 12)
+                                .addComponent(buscarCategoria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(limpiarFormulario)
+                                .addGap(12, 12, 12)
+                                .addComponent(eliminarCategoria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnVolver)))))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,15 +124,86 @@ public class CategoriaEditar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(txtNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(txtBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarCategoria)
+                    .addComponent(buscarCategoria)
+                    .addComponent(limpiarFormulario)
+                    .addComponent(btnVolver)
+                    .addComponent(eliminarCategoria))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCategoriaActionPerformed
+        // TODO add your handling code here:
+        txtBuscarCategoria.setEditable(false);
+        String idCategoria = txtBuscarCategoria.getText();
+        
+        if(idCategoria.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de buscar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        CategoriaController categoriaController = new CategoriaController();
+        Categoria categoria  = categoriaController.Consultar(Integer.parseInt(idCategoria));
+        
+        if(categoria != null) {
+            txtNombreCategoria.setText(categoria.getNombre());
+        }
+    }//GEN-LAST:event_buscarCategoriaActionPerformed
+
+    private void limpiarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarFormularioActionPerformed
+        // TODO add your handling code here:
+        limpiarCamposFormulario();
+    }//GEN-LAST:event_limpiarFormularioActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        CategoriaListar categoriaListar = new CategoriaListar();
+        categoriaListar.setVisible(true);
+
+        // Cierra la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void eliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCategoriaActionPerformed
+        // TODO add your handling code here:txtBuscarCategoria.setEditable(false);
+        String idCategoria = txtBuscarCategoria.getText();
+        
+        if(idCategoria.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        CategoriaController categoriaController = new CategoriaController();
+        categoriaController.BorrarCategoria(Integer.parseInt(idCategoria));
+    }//GEN-LAST:event_eliminarCategoriaActionPerformed
+
+    private void editarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarCategoriaActionPerformed
+        // TODO add your handling code here:
+        String idCategoria = txtBuscarCategoria.getText().trim();
+        
+        if(idCategoria.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Categoria actualizarCategoria = new Categoria();
+        CategoriaController edicionCategoria = new CategoriaController();
+        
+        String _nombreCategoria = txtNombreCategoria.getText();
+        
+        actualizarCategoria.setNombre(_nombreCategoria);
+        int id_categoria = Integer.parseInt(idCategoria);
+        
+        edicionCategoria.EditarCategoria(actualizarCategoria, id_categoria);
+    }//GEN-LAST:event_editarCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,9 +244,20 @@ public class CategoriaEditar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton buscarCategoria;
+    private javax.swing.JButton editarCategoria;
+    private javax.swing.JButton eliminarCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton limpiarFormulario;
+    private javax.swing.JTextField txtBuscarCategoria;
+    private javax.swing.JTextField txtNombreCategoria;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCamposFormulario() {
+        txtNombreCategoria.setText("");
+        txtBuscarCategoria.setEditable(true);
+    }
 }

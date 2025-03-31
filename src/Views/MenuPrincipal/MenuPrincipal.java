@@ -4,6 +4,7 @@
  */
 package Views.MenuPrincipal;
 
+import Views.Categoria.CategoriaListar;
 import Views.Producto.ProductoListar;
 
 /**
@@ -30,6 +31,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         btnCrudProducto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnCrudCategoria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +45,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel1.setText("CRUDS");
 
+        btnCrudCategoria.setText("Categoria");
+        btnCrudCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrudCategoriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -53,8 +62,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGap(120, 120, 120)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(btnCrudProducto)))
+                        .addGap(142, 142, 142)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCrudProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCrudCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addContainerGap(162, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -62,7 +73,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
+                .addGap(31, 31, 31)
+                .addComponent(btnCrudCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrudProducto)
                 .addContainerGap(141, Short.MAX_VALUE))
         );
@@ -77,6 +90,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // Cierra la ventana actual (MenuPrincipal)
         this.dispose();
     }//GEN-LAST:event_btnCrudProductoActionPerformed
+
+    private void btnCrudCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrudCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriaListar categoria = new CategoriaListar();
+        categoria.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnCrudCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +135,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrudCategoria;
     private javax.swing.JButton btnCrudProducto;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
