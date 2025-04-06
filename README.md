@@ -131,3 +131,22 @@ public class Main {
 }
 
 MAIN VENTA
+
+
+# DEPENDENCIAS/MÓDULOS AGREGADOS
+## JDateChooser
+**JCalendar Library** para el componente `JDateChooser`.
+## Pasos para agregar `JCalendar` en NetBeans
+
+### 1. Descargar la biblioteca JCalendar
+- Ve al siguiente enlace y descarga el archivo JCalendar:
+  - [JCalendar en SourceForge](https://toedter.com/jcalendar/)
+
+### 2. Agregar JCalendar al Proyecto
+- Abre tu proyecto en **NetBeans**.
+- Haz clic derecho sobre tu proyecto en el panel de **Proyectos**.
+- Selecciona **Propiedades**.
+- En el panel de propiedades, ve a **Librerías**.
+- Haz clic en **Agregar JAR/Carpeta**.
+- Navega hasta la ubicación del archivo `JCalendar.jar` descargado y selecciónalo.
+- Asegúrate de que esté agregado correctamente en la lista de librerías.
