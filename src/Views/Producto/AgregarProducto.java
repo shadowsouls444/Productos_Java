@@ -4,10 +4,10 @@
  */
 package Views.Producto;
 
+import Controllers.CategoriaController;
 import Controllers.ProductoController;
 import Models.Categoria;
 import Models.Producto;
-import static java.lang.Integer.parseInt;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -181,17 +181,20 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
 
-        Categoria categoria = new Categoria();
         try {
             
             int id = Integer.parseInt(txtId.getText());
             String nombreProducto = txtNombre.getText();
-            categoria.setId(parseInt(txtCategoria.getText()));
+            int categoria = Integer.parseInt(txtCategoria.getText());
             String fechaVencimiento = txtFechaVencimiento.getText();
             int cantidad = Integer.parseInt(txtCantidad.getText());
             double precio = Double.parseDouble(txtPrecio.getText());
             
-            producto = new Producto(id, nombreProducto, categoria.getId(), new SimpleDateFormat("yyyy-MM-dd").parse(fechaVencimiento), cantidad, precio);
+            CategoriaController categorias = new CategoriaController();
+            Categoria categoriaEncontrada = categorias.ConsultarCategoria(categoria);
+            
+            
+            producto = new Producto(id, nombreProducto, categoriaEncontrada.getId(), new SimpleDateFormat("yyyy-MM-dd").parse(fechaVencimiento), cantidad, precio);
             productoController.InsertarProducto(producto);
             
         } catch (ParseException ex) {

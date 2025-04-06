@@ -53,8 +53,8 @@ public class Main {
         Producto producto;
 
         //INSERTAR
-        producto = new Producto(2, "PS5", 2, new SimpleDateFormat("yyyy-MM-dd").parse("2025-01-01"), 5, 2.500);
-        productoController.InsertarProducto(producto);
+        //producto = new Producto(2, "PS5", categoriaController = new Categoria(1, ""), new SimpleDateFormat("yyyy-MM-dd").parse("2025-01-01"), 5, 2.500);
+        //productoController.InsertarProducto(producto);
         
         /*
         //ELIMINAR

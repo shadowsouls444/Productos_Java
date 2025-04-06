@@ -71,27 +71,38 @@ public class CategoriaService {
     }
 
     public ResultSet ConsultarCategoria(String ConsultaSQL) {
-        
-        // Establecer la conexión
         Connection conexion = DataBase.Conectar();
-        
-        //Inicializar el resultado como null
         ResultSet rs = null;
 
-        try {
-            // Crear el PreparedStatement
-            PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
-
-            // Ejecutar el query y obtener el ResultSet
-            rs = stmt.executeQuery();
-
-            // NO cerrar la conexión ni el Statement aquí, ya que los necesitamos afuera
-        } catch (SQLException e) {
-            System.out.println("ERROR: Al consultar Categorias " + e.getMessage());
+        if (conexion != null) {
+            try {
+                PreparedStatement stmt = conexion.prepareStatement(ConsultaSQL);
+                rs = stmt.executeQuery();  // Ejecuta la consulta y obtiene el ResultSet
+            } catch (SQLException e) {
+                System.out.println("ERROR: Al consultar las categorías " + e.getMessage());
+            }
         }
+        return rs;
+    }
+    
+    public Categoria ConsultarCategoria(int id) {
+        String sql = "SELECT nombre FROM categorias WHERE id = '" + id + "'";
 
-        // Devolver el ResultSet para que se procese fuera del método
-        return rs;  
+        Categoria categoriaEncontrada = new Categoria();
+        try {
+            Connection conexion = DataBase.Conectar();
+            PreparedStatement consulta = conexion.prepareStatement(sql);
+            ResultSet resultado = consulta.executeQuery();
+
+            if(resultado.next()) {
+                categoriaEncontrada.setNombre(resultado.getString("nombre"));
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "No se encontraron registros", "Error al recuperar la categoria", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error de tipo: " + e);
+            System.out.println("Error en la clase: " + this.getClass().getName());
+        }
+        return categoriaEncontrada;
     }
 
 }

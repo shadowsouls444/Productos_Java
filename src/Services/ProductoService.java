@@ -3,6 +3,7 @@ package Services;
 import DB.DataBase;
 import Models.Producto;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class ProductoService {
@@ -35,9 +36,9 @@ public class ProductoService {
     }
 
     // Editar producto
-    public void EditarProducto(Producto producto) {
+    public void EditarProducto(Producto producto, int id) {
         Connection conexion = DataBase.Conectar();
-        String sql = "UPDATE productos SET nombreProducto = ?, categoria = ?, fechaVencimiento = ?, cantidad = ?, precio = ? WHERE id = ?";
+        String sql = "UPDATE productos SET nombreProducto = ?, categoria = ?, fechaVencimiento = ?, cantidad = ?, precio = ? WHERE id = '" + id + "'";
 
         try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
             preparedStatement.setString(1, producto.getNombreProducto());
@@ -45,7 +46,6 @@ public class ProductoService {
             preparedStatement.setDate(3, new java.sql.Date(producto.getFechaVencimiento().getTime()));
             preparedStatement.setInt(4, producto.getCantidad());
             preparedStatement.setDouble(5, producto.getPrecio());
-            preparedStatement.setInt(6, producto.getId());
             preparedStatement.executeUpdate();
             System.out.println("El producto se ha modificado correctamente");
         } catch (SQLException e) {
@@ -56,7 +56,7 @@ public class ProductoService {
     }
 
     // Mostrar productos registrados
-    public ResultSet ConsultarProducto(String ConsultaSQL) {
+    public ResultSet ConsultarProductos(String ConsultaSQL) {
         
         // Establecer la conexión
         Connection conexion = DataBase.Conectar();
@@ -94,6 +94,31 @@ public class ProductoService {
         } finally {
             DataBase.DesconectarDB(conexion);
         }
+    }
+
+    // Consultar a un producto para editar
+    public Producto ConsultarProducto(int id) {
+        String sql = "SELECT nombreProducto, categoria, fechaVencimiento, cantidad, precio FROM productos WHERE id = '" + id + "'";
+
+        Producto productoEncontrado = new Producto();
+        try {
+            Connection conexion = DataBase.Conectar();
+            PreparedStatement consulta = conexion.prepareStatement(sql);
+            ResultSet resultado = consulta.executeQuery();
+
+            if(resultado.next()) {
+                productoEncontrado.setNombreProducto(resultado.getString("nombreProducto"));
+                productoEncontrado.setId_categoria(resultado.getInt("categoria"));
+                productoEncontrado.setFechaVencimiento(resultado.getDate("fechaVencimiento"));
+                productoEncontrado.setCantidad(resultado.getInt("cantidad"));
+                productoEncontrado.setPrecio(resultado.getDouble("precio"));
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "No se encontraron registros", "Error al recuperar el producto", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error de tipo: " + e);
+            System.out.println("Error en la clase: " + this.getClass().getName());
+        }
+        return productoEncontrado;
     }
     
 }

@@ -152,7 +152,7 @@ public class CategoriaEditar extends javax.swing.JFrame {
         }
         
         CategoriaController categoriaController = new CategoriaController();
-        Categoria categoria  = categoriaController.Consultar(Integer.parseInt(idCategoria));
+        Categoria categoria  = categoriaController.ConsultarCategoria(Integer.parseInt(idCategoria));
         
         if(categoria != null) {
             txtNombreCategoria.setText(categoria.getNombre());

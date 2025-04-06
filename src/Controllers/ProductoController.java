@@ -26,16 +26,20 @@ public class ProductoController {
 
     }
 
-    public void EditarProducto(Producto producto) {
+    public void EditarProducto(Producto producto, int id) {
         
-        productoService.EditarProducto(producto);
+        productoService.EditarProducto(producto, id);
         
     }
 
-    public ResultSet ConsultarProducto(String ConsultaSQL) {
+    public ResultSet ConsultarProductos(String ConsultaSQL) {
         
-        return productoService.ConsultarProducto(ConsultaSQL);
+        return productoService.ConsultarProductos(ConsultaSQL);
         
+    }
+
+    public Producto ConsultarProducto(int idProducto) {
+        return productoService.ConsultarProducto(idProducto);
     }
    
 }

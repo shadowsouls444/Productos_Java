@@ -4,7 +4,16 @@
  */
 package Views.Producto;
 
-import Views.CompraVenta.*;
+import Controllers.CategoriaController;
+import Controllers.ProductoController;
+import Models.Categoria;
+import Models.Producto;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.*;
 
 /**
  *
@@ -17,6 +26,12 @@ public class EditarProducto extends javax.swing.JFrame {
      */
     public EditarProducto() {
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                cargarCategorias();
+            }
+        });
     }
 
     /**
@@ -32,17 +47,23 @@ public class EditarProducto extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        choice1 = new java.awt.Choice();
+        txtNombre = new javax.swing.JTextField();
+        editarProducto = new javax.swing.JButton();
+        buscarProducto = new javax.swing.JButton();
+        limpiarFormulario = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        eliminarProducto = new javax.swing.JButton();
+        txtVencimiento = new com.toedter.calendar.JDateChooser();
+        txtCategoria = new javax.swing.JComboBox<>();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -55,7 +76,7 @@ public class EditarProducto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Editar Producto");
 
-        jLabel2.setText("Producto");
+        jLabel2.setText("Id Producto");
 
         jLabel3.setText("nombre");
 
@@ -63,15 +84,44 @@ public class EditarProducto extends javax.swing.JFrame {
 
         jLabel5.setText("precio");
 
-        jTextField3.setText("5");
-
         jLabel6.setText("cantidad");
 
-        jTextField4.setText("5");
+        jLabel7.setText("Vencimiento");
 
-        jLabel7.setText("Producto");
+        editarProducto.setText("EDITAR");
+        editarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarProductoActionPerformed(evt);
+            }
+        });
 
-        jTextField5.setText("5");
+        buscarProducto.setText("BUSCAR");
+        buscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarProductoActionPerformed(evt);
+            }
+        });
+
+        limpiarFormulario.setText("LIMPIAR");
+        limpiarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarFormularioActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("VOLVER");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        eliminarProducto.setText("ELIMINAR");
+        eliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarProductoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,26 +136,44 @@ public class EditarProducto extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(33, 33, 33)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(editarProducto)
+                                .addGap(12, 12, 12)
+                                .addComponent(buscarProducto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(limpiarFormulario)
+                                .addGap(12, 12, 12)
+                                .addComponent(eliminarProducto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnVolver))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(68, 68, 68)
+                                        .addComponent(jLabel7)
+                                        .addGap(28, 28, 28))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(40, 40, 40)
+                                                .addComponent(txtNombre))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(70, 70, 70)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                    .addComponent(txtVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,32 +181,146 @@ public class EditarProducto extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4))
-                    .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 24, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel7))
+                    .addComponent(txtVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(94, 94, 94))
+                    .addComponent(editarProducto)
+                    .addComponent(buscarProducto)
+                    .addComponent(limpiarFormulario)
+                    .addComponent(btnVolver)
+                    .addComponent(eliminarProducto))
+                .addGap(44, 44, 44))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void editarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProductoActionPerformed
+        // TODO add your handling code here:
+        String idProducto = txtIdProducto.getText().trim();
+
+        if(idProducto.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Producto actualizarProducto = new Producto();
+        ProductoController edicionProducto = new ProductoController();
+        
+        Categoria consultarCategoria = (Categoria) txtCategoria.getSelectedItem();
+        int idCategoria = consultarCategoria.getId();
+
+        System.out.println("Categoria: " + consultarCategoria.getNombre());
+
+        String _nombreProducto = txtNombre.getText();
+        Date fechaVencimiento = txtVencimiento.getDate();
+        int _cantidad = Integer.parseInt(txtCantidad.getText());
+        double _precio = Double.parseDouble(txtPrecio.getText());
+        
+
+        actualizarProducto.setNombreProducto(_nombreProducto);
+        actualizarProducto.setFechaVencimiento(fechaVencimiento);
+        actualizarProducto.setCantidad(_cantidad);
+        actualizarProducto.setPrecio(_precio);
+        actualizarProducto.setId_categoria(idCategoria);
+        System.out.println("ID Categoria encontrada: " + idCategoria);
+        
+        int id_producto = Integer.parseInt(idProducto);
+
+        edicionProducto.EditarProducto(actualizarProducto, id_producto);
+    }//GEN-LAST:event_editarProductoActionPerformed
+
+    private void buscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarProductoActionPerformed
+        // TODO add your handling code here:
+        txtIdProducto.setEditable(false);
+        String idProducto = txtIdProducto.getText();
+
+        if(idProducto.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de buscar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ProductoController productoController = new ProductoController();
+        Producto producto  = productoController.ConsultarProducto(Integer.parseInt(idProducto));
+
+        if(producto != null) {
+            txtNombre.setText(producto.getNombreProducto());
+            txtVencimiento.setDate(producto.getFechaVencimiento());
+            txtCantidad.setText(String.valueOf(producto.getCantidad()));
+            txtPrecio.setText(String.valueOf(producto.getPrecio()));
+            
+            for(int i = 0; i < txtCategoria.getItemCount(); i++) {
+                Categoria categoria = (Categoria) txtCategoria.getItemAt(i);
+                if(categoria.getId() == producto.getId_categoria()) {
+                    txtCategoria.setSelectedItem(categoria);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_buscarProductoActionPerformed
+
+    private void limpiarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarFormularioActionPerformed
+        // TODO add your handling code here:
+        limpiarCamposFormulario();
+    }//GEN-LAST:event_limpiarFormularioActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        ProductoListar productoListar = new ProductoListar();
+        productoListar.setVisible(true);
+
+        // Cierra la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
+        // TODO add your handling code here:txtBuscarCategoria.setEditable(false);
+        String idProducto = txtIdProducto.getText();
+
+        if(idProducto.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ProductoController productoController = new ProductoController();
+        productoController.BorrarProducto(Integer.parseInt(idProducto));
+    }//GEN-LAST:event_eliminarProductoActionPerformed
+
+    // Método para cargar las categorías en el JComboBox
+    private void cargarCategorias() {
+        txtCategoria.removeAllItems();
+
+        CategoriaController categoriaController = new CategoriaController();
+        ResultSet rs = categoriaController.ConsultarCategorias("SELECT * FROM categorias");
+
+        try {
+            while (rs.next()) {
+                int idCategoria = rs.getInt("id");
+                String nombreCategoria = rs.getString("nombre");
+                Categoria categoria = new Categoria(idCategoria, nombreCategoria);
+                txtCategoria.addItem(categoria);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar las categorías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -180,9 +362,12 @@ public class EditarProducto extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Choice choice1;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton buscarProducto;
+    private javax.swing.JButton editarProducto;
+    private javax.swing.JButton eliminarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -193,9 +378,24 @@ public class EditarProducto extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton limpiarFormulario;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JComboBox<Categoria> txtCategoria;
+    private javax.swing.JTextField txtIdProducto;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrecio;
+    private com.toedter.calendar.JDateChooser txtVencimiento;
     // End of variables declaration//GEN-END:variables
+    
+    private void limpiarCamposFormulario() {
+        txtNombre.setText("");
+        txtCategoria.setSelectedIndex(0);
+        txtCantidad.setText("");
+        txtPrecio.setText("");
+        
+        
+        txtIdProducto.setEditable(true);
+        Date fechaActual = new Date();
+        txtVencimiento.setDate(fechaActual);
+    }
 }

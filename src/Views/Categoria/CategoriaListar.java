@@ -37,7 +37,7 @@ public class CategoriaListar extends javax.swing.JFrame {
         md.setColumnIdentifiers(titulos);
 
         //Recorrer las columnas en ResultSet
-        ResultSet rs = categoriaController.ConsultarCategoria("SELECT * FROM Categorias");
+        ResultSet rs = categoriaController.ConsultarCategorias("SELECT * FROM Categorias");
 
         try {
 

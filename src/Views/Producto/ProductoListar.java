@@ -5,7 +5,6 @@
 package Views.Producto;
 
 import Controllers.ProductoController;
-import Views.CompraVenta.*;
 import Views.MenuPrincipal.MenuPrincipal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,7 +41,7 @@ public class ProductoListar extends javax.swing.JFrame {
         md.setColumnIdentifiers(titulos);
 
         //Recorrer las columnas en ResultSet
-        ResultSet rs = productoController.ConsultarProducto("SELECT * FROM Productos");
+        ResultSet rs = productoController.ConsultarProductos("SELECT * FROM Productos");
 
         try {
 
@@ -91,6 +90,7 @@ public class ProductoListar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        editarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,15 +123,26 @@ public class ProductoListar extends javax.swing.JFrame {
             }
         });
 
+        editarProducto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        editarProducto.setText("Editar");
+        editarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editarProducto))
                     .addComponent(btnVolver)
-                    .addComponent(btnAgregar)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -145,7 +156,9 @@ public class ProductoListar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
-                .addComponent(btnAgregar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar)
+                    .addComponent(editarProducto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -171,6 +184,14 @@ public class ProductoListar extends javax.swing.JFrame {
         // Cierra la ventana actual 
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void editarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProductoActionPerformed
+        // TODO add your handling code here:
+        EditarProducto editarProducto = new EditarProducto();
+        editarProducto.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_editarProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +239,7 @@ public class ProductoListar extends javax.swing.JFrame {
     private javax.swing.JTable TablaProducto;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton editarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
