@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -67,12 +68,14 @@ INSERT INTO `compraventas` (`id`, `total`, `cantidad`, `codFactura`, `producto`)
 --
 
 CREATE TABLE `productos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreProducto` varchar(150) NOT NULL,
   `categoria` int(11) NOT NULL,
   `fechaVencimiento` date NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precio` double NOT NULL
+  `precio` double NOT NULL,
+  PRIMARY KEY(id), 
+  FOREIGN KEY(categoria) REFERENCES categorias(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -108,21 +111,9 @@ INSERT INTO `proveedor` (`id`, `nombre`, `correo`, `numeroCelular`, `direccion`)
 --
 
 --
--- Indices de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `compraventas`
 --
 ALTER TABLE `compraventas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `productos`
---
-ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`);
 
 --
