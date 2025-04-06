@@ -90,52 +90,51 @@ public class CategoriaEditar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(94, 94, 94)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(jLabel1))
+                        .addComponent(editarCategoria)
+                        .addGap(12, 12, 12)
+                        .addComponent(buscarCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(limpiarFormulario)
+                        .addGap(12, 12, 12)
+                        .addComponent(eliminarCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVolver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(editarCategoria)
-                                .addGap(12, 12, 12)
-                                .addComponent(buscarCategoria)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(limpiarFormulario)
-                                .addGap(12, 12, 12)
-                                .addComponent(eliminarCategoria)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnVolver)))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(209, 209, 209))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(txtBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editarCategoria)
                     .addComponent(buscarCategoria)
                     .addComponent(limpiarFormulario)
                     .addComponent(btnVolver)
                     .addComponent(eliminarCategoria))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -149,7 +148,7 @@ public class CategoriaEditar extends javax.swing.JFrame {
         if(idCategoria.equals("")) {
             JOptionPane.showMessageDialog(null, "Error al tratar de buscar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
-        }
+        } 
         
         CategoriaController categoriaController = new CategoriaController();
         Categoria categoria  = categoriaController.ConsultarCategoria(Integer.parseInt(idCategoria));
@@ -183,6 +182,7 @@ public class CategoriaEditar extends javax.swing.JFrame {
         
         CategoriaController categoriaController = new CategoriaController();
         categoriaController.BorrarCategoria(Integer.parseInt(idCategoria));
+        JOptionPane.showMessageDialog(null, "Se elimino correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_eliminarCategoriaActionPerformed
 
     private void editarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarCategoriaActionPerformed
@@ -203,6 +203,7 @@ public class CategoriaEditar extends javax.swing.JFrame {
         int id_categoria = Integer.parseInt(idCategoria);
         
         edicionCategoria.EditarCategoria(actualizarCategoria, id_categoria);
+        JOptionPane.showMessageDialog(null, "Se edito correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_editarCategoriaActionPerformed
 
     /**

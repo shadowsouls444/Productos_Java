@@ -227,8 +227,6 @@ public class EditarProducto extends javax.swing.JFrame {
         Categoria consultarCategoria = (Categoria) txtCategoria.getSelectedItem();
         int idCategoria = consultarCategoria.getId();
 
-        System.out.println("Categoria: " + consultarCategoria.getNombre());
-
         String _nombreProducto = txtNombre.getText();
         Date fechaVencimiento = txtVencimiento.getDate();
         int _cantidad = Integer.parseInt(txtCantidad.getText());
@@ -240,11 +238,11 @@ public class EditarProducto extends javax.swing.JFrame {
         actualizarProducto.setCantidad(_cantidad);
         actualizarProducto.setPrecio(_precio);
         actualizarProducto.setId_categoria(idCategoria);
-        System.out.println("ID Categoria encontrada: " + idCategoria);
         
         int id_producto = Integer.parseInt(idProducto);
 
         edicionProducto.EditarProducto(actualizarProducto, id_producto);
+        JOptionPane.showMessageDialog(null, "Se edito correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_editarProductoActionPerformed
 
     private void buscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarProductoActionPerformed
@@ -300,6 +298,7 @@ public class EditarProducto extends javax.swing.JFrame {
 
         ProductoController productoController = new ProductoController();
         productoController.BorrarProducto(Integer.parseInt(idProducto));
+        JOptionPane.showMessageDialog(null, "Se elimino correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_eliminarProductoActionPerformed
 
     // Método para cargar las categorías en el JComboBox
