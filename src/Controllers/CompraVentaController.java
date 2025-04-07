@@ -36,4 +36,8 @@ public class CompraVentaController {
         
     }
     
+    public CompraVenta ConsultarCompraVenta(int idCompraVenta) {
+        return compraVentaService.ConsultarCompraVenta(idCompraVenta);
+    }
+    
 }

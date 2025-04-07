@@ -4,17 +4,72 @@
  */
 package Views.CompraVenta;
 
+import Controllers.CompraVentaController;
+import Models.CompraVenta;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author ANGEL
  */
 public class CompraVentaListar extends javax.swing.JFrame {
+    
+    CompraVentaController compraVentaController = new CompraVentaController();
+    
+    CompraVenta compraVenta;
 
     /**
      * Creates new form CompraVenta
      */
     public CompraVentaListar() {
         initComponents();
+        InicializarTabla();
+    }
+    
+    public void InicializarTabla() {
+        // Definir los títulos de las columnas de la tabla
+        Object[] titulos = new Object[5];
+        titulos[0] = "ID";
+        titulos[1] = "Total";
+        titulos[2] = "Cantidad";
+        titulos[3] = "Código Factura";
+        titulos[4] = "Producto";
+
+        // Crear el modelo de la tabla
+        DefaultTableModel md = new DefaultTableModel();
+        md.setColumnIdentifiers(titulos);
+
+        // Consultar los datos de la tabla compraventas
+        ResultSet rs = compraVentaController.ConsultarCompraVenta("SELECT * FROM compraventas");
+
+        try {
+            // Recorrer el ResultSet y llenar las filas de la tabla
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                double total = rs.getDouble("total");
+                int cantidad = rs.getInt("cantidad");
+                String codFactura = rs.getString("codFactura");
+                int producto = rs.getInt("producto");
+
+                // Crear una fila con los valores obtenidos
+                Object[] fila = new Object[5];
+                fila[0] = id;
+                fila[1] = total;
+                fila[2] = cantidad;
+                fila[3] = codFactura;
+                fila[4] = producto;
+
+                // Agregar la fila al modelo de la tabla
+                md.addRow(fila);
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR: Al consultar CompraVentas " + e.getMessage());
+        }
+
+        // Asignar el modelo a la tabla
+        TablaCompraVenta.setModel(md);
     }
 
     /**
@@ -27,44 +82,41 @@ public class CompraVentaListar extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaCompraVenta = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaCompraVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Float(50000.0),  new Integer(8), "Papitas Lay", "EM-001", "EDITAR / ELIMINAR"},
-                { new Float(15000.0),  new Integer(2), "Cereal Zucaritas", "EM-002", "EDITAR / ELIMINAR"},
-                { new Float(200000.0),  new Integer(20), "Oya Zenu", "EM-003", "EDITAR / ELIMINAR"},
-                { new Float(300000.0),  new Integer(2), "PlayStation 2", "EM-004", "EDITAR / ELIMINAR"},
-                { new Float(30000.0),  new Integer(3), "DeTodito 160 gr", "EM-005", "EDITAR / ELIMINAR"},
-                { new Float(60000.0),  new Integer(10), "Jugo hit 1 L", "EM-006", "EDITAR / ELIMINAR"},
-                { new Float(2000.0),  new Integer(2), "bombombum", "EM-007", "EDITAR / ELIMINAR"},
-                { new Float(5000.0),  new Integer(1), "Aceite premium", "EM-008", "EDITAR / ELIMINAR"},
-                { new Float(300000.0),  new Integer(3), "Oya express", "EM-009", "EDITAR / ELIMINAR"},
-                { new Float(28000.0),  new Integer(9), "Guaro antioqueño", "EM-010", "EDITAR / ELIMINAR"}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Total", "Cantidad ", "Producto ", "Codigo factura", "OPCIONES"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Float.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        ));
+        jScrollPane1.setViewportView(TablaCompraVenta);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("COMPRA VENTA");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("Agregar +");
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnAgregar.setText("Agregar +");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +125,7 @@ public class CompraVentaListar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(btnAgregar)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -87,7 +139,7 @@ public class CompraVentaListar extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addComponent(jButton1)
+                .addComponent(btnAgregar)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -95,6 +147,13 @@ public class CompraVentaListar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        AgregarCompraVenta agregar = new AgregarCompraVenta();
+        agregar.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,9 +192,9 @@ public class CompraVentaListar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTable TablaCompraVenta;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

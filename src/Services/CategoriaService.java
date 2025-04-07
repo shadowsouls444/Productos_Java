@@ -90,18 +90,19 @@ public class CategoriaService {
     public List<Categoria> ListarCategorias() {
         List<Categoria> listaCategorias = new ArrayList<>();
         String consultaSQL = "SELECT * FROM categorias";
-        ResultSet rs = ConsultarCategoria(consultaSQL);
 
-        try {
-            while (rs != null && rs.next()) {
+        try (Connection conexion = DataBase.Conectar();  PreparedStatement stmt = conexion.prepareStatement(consultaSQL);  ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
                 Categoria categoria = new Categoria();
-                categoria.setId(rs.getInt("id")); // usa el nombre real de la columna
-                categoria.setNombre(rs.getString("nombre")); // ajusta a tu modelo
+                categoria.setId(rs.getInt("id")); // asegúrate que "id" es el nombre correcto en tu BD
+                categoria.setNombre(rs.getString("nombre")); // igual aquí
 
                 listaCategorias.add(categoria);
             }
+
         } catch (SQLException e) {
-            System.out.println("ERROR al convertir categorías: " + e.getMessage());
+            System.out.println("ERROR al listar categorías: " + e.getMessage());
         }
 
         return listaCategorias;

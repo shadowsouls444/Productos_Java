@@ -6,6 +6,8 @@ import Models.Producto;
 
 import javax.swing.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductoService {
 
@@ -133,6 +135,27 @@ public class ProductoService {
         }
 
         return productoEncontrado;
+    }
+    
+    public List<Producto> ListarProductos() {
+        List<Producto> listaProductos = new ArrayList<>();
+        String consultaSQL = "SELECT * FROM productos";
+
+        try (Connection conexion = DataBase.Conectar();  PreparedStatement stmt = conexion.prepareStatement(consultaSQL);  ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Producto producto = new Producto();
+                producto.setId(rs.getInt("id")); // asegúrate que "id" es el nombre correcto en tu BD
+                producto.setNombreProducto(rs.getString("nombreProducto")); // igual aquí
+
+                listaProductos.add(producto);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR al listar categorías: " + e.getMessage());
+        }
+
+        return listaProductos;
     }
 
 }

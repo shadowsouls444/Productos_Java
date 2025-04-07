@@ -3,6 +3,7 @@ package Controllers;
 import Models.Producto;
 import Services.ProductoService;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class ProductoController {
     
@@ -40,6 +41,10 @@ public class ProductoController {
 
     public Producto ConsultarProducto(int idProducto) {
         return productoService.ConsultarProducto(idProducto);
+    }
+    
+    public List<Producto> ListarProductos() {
+        return productoService.ListarProductos();
     }
    
 }

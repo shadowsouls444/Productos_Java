@@ -3,9 +3,13 @@ package Services;
 import java.sql.ResultSet;
 import DB.DataBase;
 import Models.CompraVenta;
+import Models.Producto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 public class CompraVentaService {
     
@@ -20,7 +24,7 @@ public class CompraVentaService {
             stmt.setDouble(2, compraVenta.getTotal());
             stmt.setInt(3, compraVenta.getCantidad());
             stmt.setString(4, compraVenta.getCodFactura());
-            stmt.setInt(5, compraVenta.getId_producto()); // Referencia al producto existente por id
+            stmt.setInt(5, compraVenta.getProducto().getId()); // Referencia al producto existente por id
             stmt.executeUpdate();
             System.out.println("La Compra-Venta se registro correctamente");
             
@@ -67,7 +71,7 @@ public class CompraVentaService {
             stmt.setDouble(1, compraVenta.getTotal());
             stmt.setInt(2, compraVenta.getCantidad());
             stmt.setString(3, compraVenta.getCodFactura());
-            stmt.setInt(4, compraVenta.getId_producto()); // Referencia al producto existente por id
+            stmt.setInt(4, compraVenta.getProducto().getId()); // Referencia al producto existente por id
             stmt.setInt(5, compraVenta.getId()); // Referencia al producto existente por id
             stmt.executeUpdate();
             System.out.println("La Compra-Venta se edito correctamente");
@@ -106,5 +110,51 @@ public class CompraVentaService {
         // Devolver el ResultSet para que se procese fuera del método
         return rs;  
     }
+    
+    // Consultar una compra-venta para editar, incluyendo detalles del producto asociado
+public CompraVenta ConsultarCompraVenta(int id) {
+    // Consulta SQL que incluye detalles del producto relacionado con la compra-venta
+    String sql = "SELECT compraventas.id, compraventas.total, compraventas.cantidad, compraventas.codFactura, "
+               + "productos.nombreProducto, productos.categoria, productos.fechaVencimiento, productos.cantidad AS cantidadProducto, productos.precio "
+               + "FROM compraventas "
+               + "INNER JOIN productos ON compraventas.producto = productos.id "
+               + "WHERE compraventas.id = ?";
+
+    CompraVenta compraVentaEncontrada = new CompraVenta();
+
+    try {
+        // Establecer la conexión con la base de datos
+        Connection conexion = DataBase.Conectar();
+        PreparedStatement consulta = conexion.prepareStatement(sql);
+        consulta.setInt(1, id); // Establecer el parámetro de consulta (ID de la compra-venta)
+        ResultSet resultado = consulta.executeQuery();
+
+        if (resultado.next()) {
+            // Crear un objeto CompraVenta y establecer sus valores
+            compraVentaEncontrada.setId(resultado.getInt("id"));
+            compraVentaEncontrada.setTotal(resultado.getDouble("total"));
+            compraVentaEncontrada.setCantidad(resultado.getInt("cantidad"));
+            compraVentaEncontrada.setCodFactura(resultado.getString("codFactura"));
+
+            // Crear un objeto Producto con los datos obtenidos
+            Producto producto = new Producto();
+            producto.setNombreProducto(resultado.getString("nombreProducto"));
+            producto.setFechaVencimiento(resultado.getDate("fechaVencimiento"));
+            producto.setCantidad(resultado.getInt("cantidadProducto"));
+            producto.setPrecio(resultado.getDouble("precio"));
+
+            // Asignar el producto al objeto CompraVenta
+            compraVentaEncontrada.setProducto(producto);
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "No se encontraron registros", "Error al recuperar la compra-venta", JOptionPane.ERROR_MESSAGE);
+        System.out.println("Error de tipo: " + e);
+        System.out.println("Error en la clase: " + this.getClass().getName());
+    }
+
+    return compraVentaEncontrada;
+}
+   
     
 }

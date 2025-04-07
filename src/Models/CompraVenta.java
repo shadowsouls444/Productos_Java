@@ -6,17 +6,17 @@ public class CompraVenta {
     private double total;
     private int cantidad;
     private String codFactura;
-    private int id_producto; // Relación con Producto
+    private Producto producto; // Relación con Producto
 
     public CompraVenta() {
     }
 
-    public CompraVenta(int id, double total, int cantidad, String codFactura, int id_producto) {
+    public CompraVenta(int id, double total, int cantidad, String codFactura, Producto producto) {
         this.id = id;
         this.total = total;
         this.cantidad = cantidad;
         this.codFactura = codFactura;
-        this.id_producto = id_producto;
+        this.producto = producto;
     }
 
     public int getId() {
@@ -51,13 +51,14 @@ public class CompraVenta {
         this.codFactura = codFactura;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
-
+    
+    
     
 }
