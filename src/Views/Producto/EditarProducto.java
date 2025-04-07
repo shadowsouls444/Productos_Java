@@ -123,6 +123,12 @@ public class EditarProducto extends javax.swing.JFrame {
             }
         });
 
+        txtCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCategoriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -216,29 +222,28 @@ public class EditarProducto extends javax.swing.JFrame {
         // TODO add your handling code here:
         String idProducto = txtIdProducto.getText().trim();
 
-        if(idProducto.equals("")) {
+        if (idProducto.equals("")) {
             JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         Producto actualizarProducto = new Producto();
         ProductoController edicionProducto = new ProductoController();
-        
-        Categoria consultarCategoria = (Categoria) txtCategoria.getSelectedItem();
-        int idCategoria = consultarCategoria.getId();
+
+        // Obtenemos directamente el objeto Categoria seleccionado en el ComboBox
+        Categoria categoriaSeleccionada = (Categoria) txtCategoria.getSelectedItem();
 
         String _nombreProducto = txtNombre.getText();
         Date fechaVencimiento = txtVencimiento.getDate();
         int _cantidad = Integer.parseInt(txtCantidad.getText());
         double _precio = Double.parseDouble(txtPrecio.getText());
-        
 
         actualizarProducto.setNombreProducto(_nombreProducto);
         actualizarProducto.setFechaVencimiento(fechaVencimiento);
         actualizarProducto.setCantidad(_cantidad);
         actualizarProducto.setPrecio(_precio);
-        actualizarProducto.setId_categoria(idCategoria);
-        
+        actualizarProducto.setCategoria(categoriaSeleccionada); // ← Aquí va el objeto, no el ID
+
         int id_producto = Integer.parseInt(idProducto);
 
         edicionProducto.EditarProducto(actualizarProducto, id_producto);
@@ -250,24 +255,28 @@ public class EditarProducto extends javax.swing.JFrame {
         txtIdProducto.setEditable(false);
         String idProducto = txtIdProducto.getText();
 
-        if(idProducto.equals("")) {
+        if (idProducto.equals("")) {
             JOptionPane.showMessageDialog(null, "Error al tratar de buscar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         ProductoController productoController = new ProductoController();
-        Producto producto  = productoController.ConsultarProducto(Integer.parseInt(idProducto));
+        Producto producto = productoController.ConsultarProducto(Integer.parseInt(idProducto));
 
-        if(producto != null) {
+        if (producto != null) {
             txtNombre.setText(producto.getNombreProducto());
             txtVencimiento.setDate(producto.getFechaVencimiento());
             txtCantidad.setText(String.valueOf(producto.getCantidad()));
             txtPrecio.setText(String.valueOf(producto.getPrecio()));
-            
-            for(int i = 0; i < txtCategoria.getItemCount(); i++) {
-                Categoria categoria = (Categoria) txtCategoria.getItemAt(i);
-                if(categoria.getId() == producto.getId_categoria()) {
-                    txtCategoria.setSelectedItem(categoria);
+
+            // Obtenemos la categoría del producto (ahora es un objeto completo)
+            Categoria categoriaProducto = producto.getCategoria();
+
+            // Recorremos el JComboBox para encontrar y seleccionar la categoría correspondiente
+            for (int i = 0; i < txtCategoria.getItemCount(); i++) {
+                Categoria categoriaCombo = (Categoria) txtCategoria.getItemAt(i);
+                if (categoriaCombo.getId() == categoriaProducto.getId()) {
+                    txtCategoria.setSelectedItem(categoriaCombo);
                     break;
                 }
             }
@@ -291,7 +300,7 @@ public class EditarProducto extends javax.swing.JFrame {
         // TODO add your handling code here:txtBuscarCategoria.setEditable(false);
         String idProducto = txtIdProducto.getText();
 
-        if(idProducto.equals("")) {
+        if (idProducto.equals("")) {
             JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -300,6 +309,10 @@ public class EditarProducto extends javax.swing.JFrame {
         productoController.BorrarProducto(Integer.parseInt(idProducto));
         JOptionPane.showMessageDialog(null, "Se elimino correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_eliminarProductoActionPerformed
+
+    private void txtCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCategoriaActionPerformed
 
     // Método para cargar las categorías en el JComboBox
     private void cargarCategorias() {
@@ -319,7 +332,7 @@ public class EditarProducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al cargar las categorías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -361,7 +374,7 @@ public class EditarProducto extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton buscarProducto;
@@ -385,14 +398,13 @@ public class EditarProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecio;
     private com.toedter.calendar.JDateChooser txtVencimiento;
     // End of variables declaration//GEN-END:variables
-    
+
     private void limpiarCamposFormulario() {
         txtNombre.setText("");
         txtCategoria.setSelectedIndex(0);
         txtCantidad.setText("");
         txtPrecio.setText("");
-        
-        
+
         txtIdProducto.setEditable(true);
         Date fechaActual = new Date();
         txtVencimiento.setDate(fechaActual);

@@ -6,6 +6,8 @@ import Models.Categoria;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class CategoriaService {
@@ -33,7 +35,7 @@ public class CategoriaService {
 
         try ( PreparedStatement stmt = conexion.prepareStatement(sql)) {
             int filasAfectadas = stmt.executeUpdate();
-            if(filasAfectadas > 0) {
+            if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Datos eliminados");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron datos a eliminar");
@@ -62,7 +64,7 @@ public class CategoriaService {
             System.out.println("La categoria se edito correctamente");
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se pudo actualizar el registro de la persona." +e, "ERROR al ACTUALIZAR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar el registro de la persona." + e, "ERROR al ACTUALIZAR", JOptionPane.ERROR_MESSAGE);
             System.out.println("ERROR: Al editar categoria " + e.getMessage());
 
         } finally {
@@ -84,7 +86,27 @@ public class CategoriaService {
         }
         return rs;
     }
-    
+
+    public List<Categoria> ListarCategorias() {
+        List<Categoria> listaCategorias = new ArrayList<>();
+        String consultaSQL = "SELECT * FROM categorias";
+        ResultSet rs = ConsultarCategoria(consultaSQL);
+
+        try {
+            while (rs != null && rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setId(rs.getInt("id")); // usa el nombre real de la columna
+                categoria.setNombre(rs.getString("nombre")); // ajusta a tu modelo
+
+                listaCategorias.add(categoria);
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR al convertir categorías: " + e.getMessage());
+        }
+
+        return listaCategorias;
+    }
+
     public Categoria ConsultarCategoria(int id) {
         String sql = "SELECT nombre FROM categorias WHERE id = '" + id + "'";
 
@@ -94,10 +116,10 @@ public class CategoriaService {
             PreparedStatement consulta = conexion.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
 
-            if(resultado.next()) {
+            if (resultado.next()) {
                 categoriaEncontrada.setNombre(resultado.getString("nombre"));
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se encontraron registros", "Error al recuperar la categoria", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error de tipo: " + e);
             System.out.println("Error en la clase: " + this.getClass().getName());

@@ -10,8 +10,13 @@ import Models.Categoria;
 import Models.Producto;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -22,14 +27,34 @@ public class AgregarProducto extends javax.swing.JFrame {
     //INSTANCIA 
     ProductoController productoController = new ProductoController();
 
+    CategoriaController categoriaController = new CategoriaController();
+
     //Instancia del objeto (para evitar error de que ya esta definido)
     Producto producto;
+
+    Categoria categoria;
+
+    //Mapear categoria
+    private Map<String, Categoria> mapaCategorias = new HashMap<>();
 
     /**
      * Creates new form Agregar
      */
     public AgregarProducto() {
         initComponents();
+        CargarCategorias();
+
+    }
+
+    public void CargarCategorias() {
+        CategoriaController categoriaController = new CategoriaController();
+        List<Categoria> categorias = categoriaController.ListarCategorias();
+
+        for (Categoria categoria : categorias) {
+            String nombre = categoria.getNombre();
+            txtCategoria.addItem(nombre); // agrega el nombre
+            mapaCategorias.put(nombre, categoria); // guarda la categoría con ese nombre
+        }
     }
 
     /**
@@ -49,16 +74,16 @@ public class AgregarProducto extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtCategoria = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtFechaVencimiento = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        txtVencimiento = new com.toedter.calendar.JDateChooser();
+        txtCategoria = new javax.swing.JComboBox<>();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -97,6 +122,12 @@ public class AgregarProducto extends javax.swing.JFrame {
             }
         });
 
+        txtCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCategoriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,22 +153,22 @@ public class AgregarProducto extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))))))
                 .addContainerGap(262, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -153,14 +184,14 @@ public class AgregarProducto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -173,7 +204,7 @@ public class AgregarProducto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
                     .addComponent(btnVolver))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,36 +212,31 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
 
-        try {
-            
-            int id = Integer.parseInt(txtId.getText());
-            String nombreProducto = txtNombre.getText();
-            int categoria = Integer.parseInt(txtCategoria.getText());
-            String fechaVencimiento = txtFechaVencimiento.getText();
-            int cantidad = Integer.parseInt(txtCantidad.getText());
-            double precio = Double.parseDouble(txtPrecio.getText());
-            
-            CategoriaController categorias = new CategoriaController();
-            Categoria categoriaEncontrada = categorias.ConsultarCategoria(categoria);
-            
-            
-            producto = new Producto(id, nombreProducto, categoriaEncontrada.getId(), new SimpleDateFormat("yyyy-MM-dd").parse(fechaVencimiento), cantidad, precio);
-            productoController.InsertarProducto(producto);
-            
-        } catch (ParseException ex) {
-            
-            Logger.getLogger(AgregarProducto.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
+        int id = Integer.parseInt(txtId.getText());
+        String nombreProducto = txtNombre.getText();
+        Date fechaVencimiento = txtVencimiento.getDate();
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+        double precio = Double.parseDouble(txtPrecio.getText());
+
+        String nombreCategoria = (String) txtCategoria.getSelectedItem();
+        Categoria categoriaSeleccionada = mapaCategorias.get(nombreCategoria);
+
+        producto = new Producto(id, nombreProducto, categoriaSeleccionada, fechaVencimiento, cantidad, precio);
+        productoController.InsertarProducto(producto);
+
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         ProductoListar productoListar = new ProductoListar();
         productoListar.setVisible(true);
-        
+
         // Cierra la ventana actual 
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void txtCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaActionPerformed
+
+    }//GEN-LAST:event_txtCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,10 +318,10 @@ public class AgregarProducto extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCategoria;
-    private javax.swing.JTextField txtFechaVencimiento;
+    private javax.swing.JComboBox<String> txtCategoria;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
+    private com.toedter.calendar.JDateChooser txtVencimiento;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,7 @@ package Controllers;
 import Models.Categoria;
 import Services.CategoriaService;
 import java.sql.*;
+import java.util.List;
 
 public class CategoriaController {
     
@@ -40,5 +41,9 @@ public class CategoriaController {
     public Categoria ConsultarCategoria(int idCategoria) {
         return categoriaService.ConsultarCategoria(idCategoria);
     }
-
+    
+    public List<Categoria> ListarCategorias() {
+        return categoriaService.ListarCategorias();
+    }
+    
 }
