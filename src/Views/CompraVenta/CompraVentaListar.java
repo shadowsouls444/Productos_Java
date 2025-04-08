@@ -6,6 +6,7 @@ package Views.CompraVenta;
 
 import Controllers.CompraVentaController;
 import Models.CompraVenta;
+import Views.MenuPrincipal.MenuPrincipal;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,10 +82,30 @@ public class CompraVentaListar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnVolver = new javax.swing.JButton();
+        editarProducto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaCompraVenta = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
+        btnVolver1 = new javax.swing.JButton();
+        editarProducto1 = new javax.swing.JButton();
+
+        btnVolver.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
+        btnVolver.setText("volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        editarProducto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        editarProducto.setText("Editar");
+        editarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarProductoActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,20 +139,41 @@ public class CompraVentaListar extends javax.swing.JFrame {
             }
         });
 
+        btnVolver1.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
+        btnVolver1.setText("volver");
+        btnVolver1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolver1ActionPerformed(evt);
+            }
+        });
+
+        editarProducto1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        editarProducto1.setText("Editar");
+        editarProducto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarProducto1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregar)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(216, 216, 216))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVolver1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnAgregar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editarProducto1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,10 +181,14 @@ public class CompraVentaListar extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addComponent(btnAgregar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar)
+                    .addComponent(editarProducto1))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnVolver1)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +200,38 @@ public class CompraVentaListar extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+
+        // Cierra la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void editarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProductoActionPerformed
+        // TODO add your handling code here:
+        EditarCompraVenta editarCompraVenta = new EditarCompraVenta();
+        editarCompraVenta.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_editarProductoActionPerformed
+
+    private void btnVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver1ActionPerformed
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+
+        // Cierra la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_btnVolver1ActionPerformed
+
+    private void editarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProducto1ActionPerformed
+// TODO add your handling code here:
+        EditarCompraVenta editarCompraVenta = new EditarCompraVenta();
+        editarCompraVenta.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_editarProducto1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +272,10 @@ public class CompraVentaListar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaCompraVenta;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnVolver1;
+    private javax.swing.JButton editarProducto;
+    private javax.swing.JButton editarProducto1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

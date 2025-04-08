@@ -91,6 +91,11 @@ public class AgregarCompraVenta extends javax.swing.JFrame {
         });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,6 +182,13 @@ public class AgregarCompraVenta extends javax.swing.JFrame {
         compraVenta = new CompraVenta(id, total, cantidad, codFactura, productoSeleccionado);
         compraVentaController.InsertarCompraVenta(compraVenta);
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        CompraVentaListar compraVentaListar = new CompraVentaListar();
+        compraVentaListar.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments

@@ -24,9 +24,9 @@ public class CompraVentaController {
 
     }
 
-    public void EditarCompra(CompraVenta compraVenta) {
+    public void EditarCompra(CompraVenta compraVenta, int id) {
         
-        compraVentaService.EditarCompraVenta(compraVenta);
+        compraVentaService.EditarCompraVenta(compraVenta, id);
         
     }
 

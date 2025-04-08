@@ -3,23 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Services/ProductoService.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Main/Main.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/DB/DataBase.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Views/Producto/AgregarProducto.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Controllers/CompraVentaController.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Controllers/ProductoController.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Models/CompraVenta.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Services/ProveedorService.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Views/Producto/ProductoListar.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Services/CompraVentaService.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Models/Categoria.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Controllers/ProveedorController.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Models/Producto.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Views/Producto/EditarProducto.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Services/CategoriaService.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Models/Proveedor.java</file>
-            <file>file:/C:/Users/ANGEL/Desktop/Productos_Java/src/Controllers/CategoriaController.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/Producto/AgregarProducto.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Services/CompraVentaService.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Services/CategoriaService.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Controllers/ProductoController.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Models/Producto.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Models/Categoria.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/Producto/ProductoListar.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/CompraVenta/AgregarCompraVenta.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Models/Proveedor.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/CompraVenta/CompraVentaListar.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Services/ProductoService.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/CompraVenta/EditarCompraVenta.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/Producto/EditarProducto.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/Proveedor/ProveedorListar.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/Proveedor/AgregarProveedor.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/MenuPrincipal/MenuPrincipal.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Views/Proveedor/EditarProveedor.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Controllers/CompraVentaController.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/Productos_Java/src/Services/ProveedorService.java</file>
         </group>
     </open-files>
 </project-private>

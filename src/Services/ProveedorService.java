@@ -2,6 +2,7 @@ package Services;
 
 import java.sql.ResultSet;
 import DB.DataBase;
+import Models.CompraVenta;
 import Models.Proveedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -105,4 +106,36 @@ public class ProveedorService {
         // Devolver el ResultSet para que se procese fuera del método
         return rs;  
     }
+    
+        // Consultar una compra-venta para editar, incluyendo detalles del producto asociado
+public Proveedor ConsultarProveedor(int id) {
+    // Consulta SQL que incluye detalles del producto relacionado con la compra-venta
+    String sql = "SELECT * FROM proveedor WHERE id = ?";
+
+    Proveedor proveedorEncontrado = new Proveedor();
+
+    try {
+        // Establecer la conexión con la base de datos
+        Connection conexion = DataBase.Conectar();
+        PreparedStatement consulta = conexion.prepareStatement(sql);
+        consulta.setInt(1, id); // Establecer el parámetro de consulta
+        ResultSet resultado = consulta.executeQuery();
+
+        if (resultado.next()) {
+            // Crear un objeto CompraVenta y establecer sus valores
+            proveedorEncontrado.setId(resultado.getInt("id"));
+            proveedorEncontrado.setCorreo(resultado.getDouble("total"));
+            proveedorEncontrado.setCantidad(resultado.getInt("cantidad"));
+            proveedorEncontrado.setCodFactura(resultado.getString("codFactura"));
+
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "No se encontraron registros", "Error al recuperar la compra-venta", JOptionPane.ERROR_MESSAGE);
+        System.out.println("Error de tipo: " + e);
+        System.out.println("Error en la clase: " + this.getClass().getName());
+    }
+
+    return compraVentaEncontrada;
+}
 }

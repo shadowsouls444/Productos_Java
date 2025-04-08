@@ -35,12 +35,18 @@ public class EditarProveedor extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        editarProducto = new javax.swing.JButton();
+        buscarProducto = new javax.swing.JButton();
+        limpiarFormulario = new javax.swing.JButton();
+        eliminarProducto = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Editando Proveedor #10");
+        jLabel1.setText("Editando Proveedor ");
 
         jLabel2.setText("Nombre:");
 
@@ -50,14 +56,12 @@ public class EditarProveedor extends javax.swing.JFrame {
 
         jLabel5.setText("Dirección:");
 
-        jTextField1.setText("Jackson Robers");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jackson.roberts@example.com");
         jTextField2.setToolTipText("");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,24 +69,58 @@ public class EditarProveedor extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setText("455 Cypress Lane, Atlanta, GA 30301");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
 
-        jTextField4.setText("(851)-085-4809");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editarProducto.setText("EDITAR");
+        editarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editarProductoActionPerformed(evt);
+            }
+        });
+
+        buscarProducto.setText("BUSCAR");
+        buscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarProductoActionPerformed(evt);
+            }
+        });
+
+        limpiarFormulario.setText("LIMPIAR");
+        limpiarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarFormularioActionPerformed(evt);
+            }
+        });
+
+        eliminarProducto.setText("ELIMINAR");
+        eliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarProductoActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("VOLVER");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("ID");
+
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
             }
         });
 
@@ -91,28 +129,46 @@ public class EditarProveedor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel3)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField4)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jButton1))
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(editarProducto)
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3)
+                                .addComponent(jTextField2)
+                                .addComponent(jTextField4)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buscarProducto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(limpiarFormulario)
+                                .addGap(12, 12, 12)
+                                .addComponent(eliminarProducto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnVolver)))
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
                 .addComponent(jLabel1)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,9 +184,14 @@ public class EditarProveedor extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(16, 16, 16))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarProducto)
+                    .addComponent(buscarProducto)
+                    .addComponent(limpiarFormulario)
+                    .addComponent(btnVolver)
+                    .addComponent(eliminarProducto))
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -152,9 +213,101 @@ public class EditarProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void editarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String idProducto = txtIdProducto.getText().trim();
+
+        if (idProducto.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Producto actualizarProducto = new Producto();
+        ProductoController edicionProducto = new ProductoController();
+
+        // Obtenemos directamente el objeto Categoria seleccionado en el ComboBox
+        Categoria categoriaSeleccionada = (Categoria) txtCategoria.getSelectedItem();
+
+        String _nombreProducto = txtNombre.getText();
+        Date fechaVencimiento = txtVencimiento.getDate();
+        int _cantidad = Integer.parseInt(txtCantidad.getText());
+        double _precio = Double.parseDouble(txtPrecio.getText());
+
+        actualizarProducto.setNombreProducto(_nombreProducto);
+        actualizarProducto.setFechaVencimiento(fechaVencimiento);
+        actualizarProducto.setCantidad(_cantidad);
+        actualizarProducto.setPrecio(_precio);
+        actualizarProducto.setCategoria(categoriaSeleccionada); // ← Aquí va el objeto, no el ID
+
+        int id_producto = Integer.parseInt(idProducto);
+
+        edicionProducto.EditarProducto(actualizarProducto, id_producto);
+        JOptionPane.showMessageDialog(null, "Se edito correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_editarProductoActionPerformed
+
+    private void buscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarProductoActionPerformed
+        // TODO add your handling code here:
+        txtIdProducto.setEditable(false);
+        String idProducto = txtIdProducto.getText();
+
+        if (idProducto.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de buscar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ProductoController productoController = new ProductoController();
+        Producto producto = productoController.ConsultarProducto(Integer.parseInt(idProducto));
+
+        if (producto != null) {
+            txtNombre.setText(producto.getNombreProducto());
+            txtVencimiento.setDate(producto.getFechaVencimiento());
+            txtCantidad.setText(String.valueOf(producto.getCantidad()));
+            txtPrecio.setText(String.valueOf(producto.getPrecio()));
+
+            // Obtenemos la categoría del producto (ahora es un objeto completo)
+            Categoria categoriaProducto = producto.getCategoria();
+
+            // Recorremos el JComboBox para encontrar y seleccionar la categoría correspondiente
+            for (int i = 0; i < txtCategoria.getItemCount(); i++) {
+                Categoria categoriaCombo = (Categoria) txtCategoria.getItemAt(i);
+                if (categoriaCombo.getId() == categoriaProducto.getId()) {
+                    txtCategoria.setSelectedItem(categoriaCombo);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_buscarProductoActionPerformed
+
+    private void limpiarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarFormularioActionPerformed
+        // TODO add your handling code here:
+        limpiarCamposFormulario();
+    }//GEN-LAST:event_limpiarFormularioActionPerformed
+
+    private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
+        // TODO add your handling code here:txtBuscarCategoria.setEditable(false);
+        String idProducto = txtIdProducto.getText();
+
+        if (idProducto.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ProductoController productoController = new ProductoController();
+        productoController.BorrarProducto(Integer.parseInt(idProducto));
+        JOptionPane.showMessageDialog(null, "Se elimino correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_eliminarProductoActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        ProductoListar productoListar = new ProductoListar();
+        productoListar.setVisible(true);
+
+        // Cierra la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,15 +346,21 @@ public class EditarProveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton buscarProducto;
+    private javax.swing.JButton editarProducto;
+    private javax.swing.JButton eliminarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton limpiarFormulario;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

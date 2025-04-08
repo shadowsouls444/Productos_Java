@@ -6,45 +6,38 @@ package Views.CompraVenta;
 
 import Controllers.CompraVentaController;
 import Controllers.ProductoController;
+import Models.Categoria;
 import Models.CompraVenta;
 import Models.Producto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.util.Date;
+import java.sql.SQLException;
 
 /**
  *
  * @author ANGEL
  */
 public class EditarCompraVenta extends javax.swing.JFrame {
-    
-    CompraVentaController compraVentaController = new CompraVentaController();
-    ProductoController productoController = new ProductoController();
-    
-    CompraVenta compraVenta;
-    Producto producto;
-    
-    //Mapear producto
-    private Map<String, Producto> mapaProductos = new HashMap<>();
-
+   
     /**
      * Creates new form Agregar
      */
     public EditarCompraVenta() {
         initComponents();
-        CargarProductos();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                cargarProductos();
+            }
+        });
     }
     
-    public void CargarProductos() {
-        List<Producto> productos = productoController.ListarProductos();
-
-        for (Producto producto : productos) {
-            String nombre = producto.getNombreProducto();
-            txtProducto.addItem(nombre); // agrega el nombre
-            mapaProductos.put(nombre, producto); // guarda el producto con ese nombre
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,9 +57,12 @@ public class EditarCompraVenta extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
-        btnAgregar = new javax.swing.JButton();
-        btnVolver = new javax.swing.JButton();
         txtProducto = new javax.swing.JComboBox<>();
+        editarCompraVenta = new javax.swing.JButton();
+        buscarCompraVenta = new javax.swing.JButton();
+        limpiarFormulario = new javax.swing.JButton();
+        eliminarCompraVenta = new javax.swing.JButton();
+        btnVolver1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,14 +79,40 @@ public class EditarCompraVenta extends javax.swing.JFrame {
 
         jLabel6.setText("ID");
 
-        btnAgregar.setText("Editar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        editarCompraVenta.setText("EDITAR");
+        editarCompraVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                editarCompraVentaActionPerformed(evt);
             }
         });
 
-        btnVolver.setText("Volver");
+        buscarCompraVenta.setText("BUSCAR");
+        buscarCompraVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarCompraVentaActionPerformed(evt);
+            }
+        });
+
+        limpiarFormulario.setText("LIMPIAR");
+        limpiarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarFormularioActionPerformed(evt);
+            }
+        });
+
+        eliminarCompraVenta.setText("ELIMINAR");
+        eliminarCompraVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarCompraVentaActionPerformed(evt);
+            }
+        });
+
+        btnVolver1.setText("VOLVER");
+        btnVolver1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolver1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,26 +131,29 @@ public class EditarCompraVenta extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(btnAgregar)))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(btnVolver))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtId)
-                                    .addComponent(txtCantidad)
-                                    .addComponent(txtCodFactura)
-                                    .addComponent(txtTotal)
-                                    .addComponent(txtProducto, 0, 133, Short.MAX_VALUE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtId)
+                            .addComponent(txtCantidad)
+                            .addComponent(txtCodFactura)
+                            .addComponent(txtTotal)
+                            .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(211, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(editarCompraVenta)
+                .addGap(12, 12, 12)
+                .addComponent(buscarCompraVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(limpiarFormulario)
+                .addGap(12, 12, 12)
+                .addComponent(eliminarCompraVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVolver1)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,29 +180,137 @@ public class EditarCompraVenta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(61, 61, 61)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnVolver))
-                .addContainerGap(107, Short.MAX_VALUE))
+                    .addComponent(editarCompraVenta)
+                    .addComponent(buscarCompraVenta)
+                    .addComponent(btnVolver1)
+                    .addComponent(eliminarCompraVenta)
+                    .addComponent(limpiarFormulario))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        int id = Integer.parseInt(txtId.getText());
+    private void editarCompraVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarCompraVentaActionPerformed
+        // TODO add your handling code here:
+        String idCompraVenta = txtId.getText().trim();
+
+        if (idCompraVenta.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de capturar un ID", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        CompraVenta actualizarCompraVenta = new CompraVenta();
+        CompraVentaController edicionCompraVenta = new CompraVentaController();
+
+        // Obtenemos directamente el objeto Producto seleccionado en el ComboBox
+        Producto productoSeleccionado = (Producto) txtProducto.getSelectedItem();
+
         double total = Double.parseDouble(txtTotal.getText());
-        int cantidad = Integer.parseInt(txtCantidad.getText());
         String codFactura = txtCodFactura.getText();
+        int cantidad = Integer.parseInt(txtCantidad.getText());
 
-        String nombreProducto = (String) txtProducto.getSelectedItem();
-        Producto productoSeleccionado = mapaProductos.get(nombreProducto);
+        actualizarCompraVenta.setTotal(total);
+        actualizarCompraVenta.setCodFactura(codFactura);
+        actualizarCompraVenta.setCantidad(cantidad);
+        actualizarCompraVenta.setProducto(productoSeleccionado);
 
-        compraVenta = new CompraVenta(id, total, cantidad, codFactura, productoSeleccionado);
-        compraVentaController.InsertarCompraVenta(compraVenta);
-    }//GEN-LAST:event_btnAgregarActionPerformed
+        int _idCompraVenta = Integer.parseInt(idCompraVenta);
 
+        edicionCompraVenta.EditarCompra(actualizarCompraVenta, _idCompraVenta);
+        JOptionPane.showMessageDialog(null, "Se edito correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_editarCompraVentaActionPerformed
+
+    private void buscarCompraVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCompraVentaActionPerformed
+        // TODO add your handling code here:
+        txtId.setEditable(false);
+        String idCompraVenta = txtId.getText();
+
+        if (idCompraVenta.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de buscar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        CompraVentaController compraVentaController = new CompraVentaController();
+        CompraVenta compraVenta = compraVentaController.ConsultarCompraVenta(Integer.parseInt(idCompraVenta));
+
+        if (compraVenta != null) {
+            txtTotal.setText(String.valueOf(compraVenta.getTotal()));
+            txtCodFactura.setText(compraVenta.getCodFactura());
+            txtCantidad.setText(String.valueOf(compraVenta.getCantidad()));
+
+            // Obtenemos la categoría del producto (ahora es un objeto completo)
+            Producto productoCompraVenta = compraVenta.getProducto();
+
+            // Recorremos el JComboBox para encontrar y seleccionar la categoría correspondiente
+            for (int i = 0; i < txtProducto.getItemCount(); i++) {
+                Producto productoCombo = (Producto) txtProducto.getItemAt(i);
+                if (productoCombo.getId() == productoCompraVenta.getId()) {
+                    txtProducto.setSelectedItem(productoCombo);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_buscarCompraVentaActionPerformed
+
+    private void limpiarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarFormularioActionPerformed
+        // TODO add your handling code here:
+        limpiarCamposFormulario();
+    }//GEN-LAST:event_limpiarFormularioActionPerformed
+
+    private void eliminarCompraVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCompraVentaActionPerformed
+        // TODO add your handling code here:txtBuscarCategoria.setEditable(false);
+        String idCompraVenta = txtId.getText();
+
+        if (idCompraVenta.equals("")) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar", "Debes ingresar un ID", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        CompraVentaController compraVentaController = new CompraVentaController();
+        compraVentaController.BorrarCompra(Integer.parseInt(idCompraVenta));
+        JOptionPane.showMessageDialog(null, "Se elimino correctamente", "Completado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_eliminarCompraVentaActionPerformed
+
+    private void btnVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver1ActionPerformed
+        CompraVentaListar compraVentaListar = new CompraVentaListar();
+        compraVentaListar.setVisible(true);
+
+        // Cierra la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_btnVolver1ActionPerformed
+
+    private void limpiarCamposFormulario() {
+        txtTotal.setText("");
+        txtProducto.setSelectedIndex(0);
+        txtCantidad.setText("");
+        txtCodFactura.setText("");
+
+        txtId.setEditable(true);
+    }
+    
+    // Método para cargar las categorías en el JComboBox
+    private void cargarProductos() {
+        txtProducto.removeAllItems();
+
+        ProductoController productoController = new ProductoController();
+        ResultSet rs = productoController.ConsultarProductos("SELECT * FROM productos");
+
+        try {
+            while (rs.next()) {
+                             
+                int idProducto = rs.getInt("id");
+                String nombreProducto = rs.getString("nombreProducto");
+                Producto producto = new Producto(idProducto, nombreProducto);
+                txtProducto.addItem(producto);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar las categorías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -221,18 +354,21 @@ public class EditarCompraVenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnVolver1;
+    private javax.swing.JButton buscarCompraVenta;
+    private javax.swing.JButton editarCompraVenta;
+    private javax.swing.JButton eliminarCompraVenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton limpiarFormulario;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodFactura;
     private javax.swing.JTextField txtId;
-    private javax.swing.JComboBox<String> txtProducto;
+    private javax.swing.JComboBox<Producto> txtProducto;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,7 @@ package Views.MenuPrincipal;
 import Views.Categoria.CategoriaListar;
 import Views.CompraVenta.CompraVentaListar;
 import Views.Producto.ProductoListar;
+import Views.Proveedor.ProveedorListar;
 
 /**
  *
@@ -34,7 +35,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnCrudCategoria = new javax.swing.JButton();
         btnCrudCompraVenta = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnProveedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +63,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        btnProveedor.setText("Proveedor");
+        btnProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +85,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addComponent(btnCrudCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCrudProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCrudCompraVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(148, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,9 +99,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(btnCrudProducto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrudCompraVenta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProveedor)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,6 +130,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_btnCrudCompraVentaActionPerformed
+
+    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
+        // TODO add your handling code here:
+        ProveedorListar proveedorListar = new ProveedorListar();
+        proveedorListar.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +178,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCrudCategoria;
     private javax.swing.JButton btnCrudCompraVenta;
     private javax.swing.JButton btnCrudProducto;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnProveedor;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

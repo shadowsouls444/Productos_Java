@@ -61,10 +61,10 @@ public class CompraVentaService {
         }
     }
     
-    public void EditarCompraVenta(CompraVenta compraVenta) {
+    public void EditarCompraVenta(CompraVenta compraVenta, int id) {
         
         Connection conexion = DataBase.Conectar();
-        String sql = "UPDATE CompraVentas SET total = ?, cantidad = ?, codFactura = ?, producto = ? WHERE id = ?";
+        String sql = "UPDATE CompraVentas SET total = ?, cantidad = ?, codFactura = ?, producto = ? WHERE id = '" + id + "'";
         
         try(PreparedStatement stmt = conexion.prepareStatement(sql)) {
             
@@ -72,7 +72,6 @@ public class CompraVentaService {
             stmt.setInt(2, compraVenta.getCantidad());
             stmt.setString(3, compraVenta.getCodFactura());
             stmt.setInt(4, compraVenta.getProducto().getId()); // Referencia al producto existente por id
-            stmt.setInt(5, compraVenta.getId()); // Referencia al producto existente por id
             stmt.executeUpdate();
             System.out.println("La Compra-Venta se edito correctamente");
             

@@ -12,6 +12,11 @@ public class Producto {
 
     public Producto() {
     }
+    
+    public Producto(int id, String nombreProducto) {
+        this.id = id;
+        this.nombreProducto = nombreProducto;
+    } 
 
     public Producto(int id, String nombreProducto, Categoria categoria, Date fechaVencimiento, int cantidad, double precio) {
         this.id = id;
@@ -70,4 +75,9 @@ public class Producto {
         this.precio = precio;
     }
 
+    @Override
+    public String toString() {
+        return nombreProducto; // Ahora el JComboBox mostrará solo el nombre
+    }
+    
 }

@@ -4,17 +4,72 @@
  */
 package Views.Proveedor;
 
+import Controllers.ProveedorController;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sebas
  */
-public class Proveedor extends javax.swing.JFrame {
+public class ProveedorListar extends javax.swing.JFrame {
+    
+    //INSTANCIA 
+    ProveedorController proveedorController = new ProveedorController();
 
     /**
      * Creates new form Proveedor
      */
-    public Proveedor() {
+    public ProveedorListar() {
         initComponents();
+        InicializarTabla();
+    }
+    
+    public void InicializarTabla() {
+
+        Object[] titulos = new Object[5];
+        titulos[0] = "ID";
+        titulos[1] = "Nombre";
+        titulos[2] = "Correo";
+        titulos[3] = "Celular";
+        titulos[4] = "Direccion";
+
+        DefaultTableModel md = new DefaultTableModel();
+        md.setColumnIdentifiers(titulos);
+
+        //Recorrer las columnas en ResultSet
+        ResultSet rs = proveedorController.ConsultarProveedor("SELECT * FROM Proveedor");
+
+        try {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String correo = rs.getString("correo");
+                String numeroCelular = rs.getString("numeroCelular");
+                String direccion = rs.getString("Direccion");
+
+                // Crear una fila con los valores obtenidos
+                Object[] fila = new Object[5];
+                fila[0] = id;
+                fila[1] = nombre;
+                fila[2] = correo;
+                fila[3] = numeroCelular;
+                fila[4] = direccion;
+
+                // Agregar la fila al modelo de la tabla
+                md.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: Al consultar Producto " + e.getMessage());
+
+        }
+
+        TablaProveedor.setModel(md);
+
     }
 
     /**
@@ -29,40 +84,37 @@ public class Proveedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaProveedor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton1.setText("Agregar +");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                { new Integer(1), "José Perez", "jose@gmail.com", "3102345678", "1234 Elm Street, Springfield, IL 62704", "EDITAR / ELIMINAR"},
-                { new Integer(2), "Manuela Beltran", "manuela@gmail.com", "312321321", "5678 Oak Avenue, Los Angeles, CA 90001", "EDITAR / ELIMINAR"},
-                { new Integer(3), "Jorge Flores", "jorge@gmail.com", "3103214567", "9101 Pine Road, Miami, FL 33101", "EDITAR / ELIMINAR"},
-                { new Integer(4), "Ted James", "ted.james@example.com", "0497-166-602", "2345 Maple Lane, Denver, CO 80202", "EDITAR/ELIMINAR"},
-                { new Integer(5), "Jennie Nichols", "jennie.nichols@example.com", "(489) 330-2385", "6789 Cedar Court, Seattle, WA 98101", "EDITAR/ELIMINAR"},
-                { new Integer(6), "Clayton Olson", "clayton.olson@example.com", "0422-838-813", "1011 Birch Street, Houston, TX 77001", "EDITAR/ELIMINAR"},
-                { new Integer(7), "Hunter Hughes", "hunter.hughes@example.com", "(104)-781-7382", "2122 Willow Drive, Chicago, IL 60601", "EDITAR/ELIMINAR"},
-                { new Integer(8), "Pimen Pisarevskiy", "pimen.pisarevskiy@example.com", "(067) A21-8306", "3233 Spruce Avenue, New York, NY 10001", "EDITAR/ELIMINAR"},
-                { new Integer(9), "Meral Avan", "meral.avan@example.com", "(480)-729-1018", "4344 Redwood Road, San Francisco, CA 94101", "EDITAR/ELIMINAR"},
-                { new Integer(10), "Jackson Roberts", "jackson.roberts@example.com", "(851)-085-4809", "455 Cypress Lane, Atlanta, GA 30301", "EDITAR/ELIMINAR"}
-            },
-            new String [] {
-                "Id", "Nombre ", "Correo ", "Numero", "Dirección", "Acciones"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+
+        TablaProveedor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(TablaProveedor);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("PROVEEDORES");
@@ -89,8 +141,9 @@ public class Proveedor extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,6 +159,13 @@ public class Proveedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AgregarProveedor agregarProveedor = new AgregarProveedor();
+        agregarProveedor.setVisible(true);
+        
+        this.dispose();;
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,29 +184,30 @@ public class Proveedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Proveedor().setVisible(true);
+                new ProveedorListar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaProveedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
