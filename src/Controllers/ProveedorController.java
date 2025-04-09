@@ -24,9 +24,9 @@ public class ProveedorController {
         
     }
     
-    public void EditarProveedor(Proveedor proveedor){
+    public void EditarProveedor(Proveedor proveedor, int id){
         
-        proveedorService.EditarProveedor(proveedor);
+        proveedorService.EditarProveedor(proveedor, id);
     
     }
     
@@ -34,5 +34,9 @@ public class ProveedorController {
         
         return proveedorService.ConsultarProveedor(ConsultaSQL);
         
+    }
+    
+    public Proveedor ConsultarProveedor(int idProveedor) {
+        return proveedorService.ConsultarProveedor(idProveedor);
     }
 }

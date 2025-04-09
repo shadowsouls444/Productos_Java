@@ -7,6 +7,7 @@ import Models.Proveedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 
 public class ProveedorService {
@@ -58,10 +59,10 @@ public class ProveedorService {
         }
     }
     
-    public void EditarProveedor(Proveedor proveedor){
+    public void EditarProveedor(Proveedor proveedor, int id){
         
         Connection conexion = DataBase.Conectar();
-        String sql = "UPDATE proveedor SET nombre = ?, correo = ?, numeroCelular = ?, direccion = ? WHERE id = ?";
+        String sql = "UPDATE proveedor SET nombre = ?, correo = ?, numeroCelular = ?, direccion = ? WHERE id = '" + id + "'";
         
         try(PreparedStatement stmt = conexion.prepareStatement(sql)){
                         
@@ -69,7 +70,6 @@ public class ProveedorService {
             stmt.setString(2, proveedor.getCorreo());
             stmt.setString(3, proveedor.getNumero());
             stmt.setString(4, proveedor.getDireccion());
-            stmt.setInt(5, proveedor.getId());
             stmt.executeUpdate();
             System.out.println("El proveedor se edito correctamente");
         } catch(SQLException e) {
@@ -124,9 +124,11 @@ public Proveedor ConsultarProveedor(int id) {
         if (resultado.next()) {
             // Crear un objeto CompraVenta y establecer sus valores
             proveedorEncontrado.setId(resultado.getInt("id"));
-            proveedorEncontrado.setCorreo(resultado.getDouble("total"));
-            proveedorEncontrado.setCantidad(resultado.getInt("cantidad"));
-            proveedorEncontrado.setCodFactura(resultado.getString("codFactura"));
+            proveedorEncontrado.setNombre(resultado.getString("nombre"));
+            proveedorEncontrado.setCorreo(resultado.getString("correo"));
+            proveedorEncontrado.setNumero(resultado.getString("numeroCelular"));
+            proveedorEncontrado.setDireccion(resultado.getString("direccion"));
+            
 
         }
 
@@ -136,6 +138,6 @@ public Proveedor ConsultarProveedor(int id) {
         System.out.println("Error en la clase: " + this.getClass().getName());
     }
 
-    return compraVentaEncontrada;
+    return proveedorEncontrado;
 }
 }
